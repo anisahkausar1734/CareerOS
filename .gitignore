@@ -1,0 +1,15 @@
+# Frontend Dependencies
+node_modules/
+
+# Spring Boot Build Files
+target/
+
+# Environment Variables
+.env
+
+# Frontend Build Output
+dist/
+
+# IDE Files
+.idea/
+.vscode/
