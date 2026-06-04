@@ -5,6 +5,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.careeros.careeros_backend.dto.AuthResponse;
+import com.careeros.careeros_backend.dto.SignupRequest;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -16,5 +21,10 @@ public class AuthController {
     @GetMapping("/test")
     public String test() {
         return authService.testConnection();
+    }
+
+    @PostMapping("/signup")
+    public AuthResponse signup(@RequestBody SignupRequest request) {
+        return authService.signup(request);
     }
 }
