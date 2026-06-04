@@ -30,10 +30,10 @@ public class AuthService {
     public AuthResponse signup(SignupRequest request) {
 
         if (userRepository.existsByEmail(request.getEmail())) {
-            return AuthResponse.builder()
-                    .success(false)
-                    .message("Email already exists")
-                    .build();
+            return buildResponse(
+        false,
+        "Email already exists"
+);
         }
 
         User user = User.builder()
@@ -64,6 +64,8 @@ public class AuthService {
         return AuthResponse.builder()
                 .success(true)
                 .message("User registered successfully")
+                .email(user.getEmail())
+                .fullName(user.getFullName())
                 .build();
     }
     public AuthResponse login(LoginRequest request) {
@@ -72,10 +74,10 @@ public class AuthService {
             userRepository.findByEmail(request.getEmail());
 
     if (optionalUser.isEmpty()) {
-        return AuthResponse.builder()
-                .success(false)
-                .message("User not found")
-                .build();
+        return buildResponse(
+        false,
+        "User not found"
+);
     }
 
     User user = optionalUser.get();
@@ -87,15 +89,26 @@ public class AuthService {
             );
 
     if (!passwordMatches) {
-        return AuthResponse.builder()
-                .success(false)
-                .message("Invalid password")
-                .build();
+       return buildResponse(
+        false,
+        "Invalid password"
+);
     }
 
     return AuthResponse.builder()
-            .success(true)
-            .message("Login successful")
+        .success(true)
+        .message("Login successful")
+        .email(user.getEmail())
+        .fullName(user.getFullName())
+        .build();
+}
+private AuthResponse buildResponse(
+        boolean success,
+        String message
+) {
+    return AuthResponse.builder()
+            .success(success)
+            .message(message)
             .build();
 }
 }
