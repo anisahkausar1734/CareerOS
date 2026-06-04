@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import com.careeros.careeros_backend.dto.LoginRequest;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -63,4 +66,36 @@ public class AuthService {
                 .message("User registered successfully")
                 .build();
     }
+    public AuthResponse login(LoginRequest request) {
+
+    Optional<User> optionalUser =
+            userRepository.findByEmail(request.getEmail());
+
+    if (optionalUser.isEmpty()) {
+        return AuthResponse.builder()
+                .success(false)
+                .message("User not found")
+                .build();
+    }
+
+    User user = optionalUser.get();
+
+    boolean passwordMatches =
+            passwordEncoder.matches(
+                    request.getPassword(),
+                    user.getPassword()
+            );
+
+    if (!passwordMatches) {
+        return AuthResponse.builder()
+                .success(false)
+                .message("Invalid password")
+                .build();
+    }
+
+    return AuthResponse.builder()
+            .success(true)
+            .message("Login successful")
+            .build();
+}
 }

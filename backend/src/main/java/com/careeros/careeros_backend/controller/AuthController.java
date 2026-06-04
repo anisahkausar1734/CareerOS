@@ -10,6 +10,7 @@ import com.careeros.careeros_backend.dto.SignupRequest;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import com.careeros.careeros_backend.dto.LoginRequest;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -26,5 +27,10 @@ public class AuthController {
     @PostMapping("/signup")
     public AuthResponse signup(@RequestBody SignupRequest request) {
         return authService.signup(request);
+    }
+
+    @PostMapping("/login")
+    public AuthResponse login(@RequestBody LoginRequest request) {
+        return authService.login(request);
     }
 }
