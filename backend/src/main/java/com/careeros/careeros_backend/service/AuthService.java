@@ -7,6 +7,7 @@ import com.careeros.careeros_backend.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -17,14 +18,13 @@ import java.util.ArrayList;
 public class AuthService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public String testConnection() {
         return "Auth Service Working!";
     }
 
     public AuthResponse signup(SignupRequest request) {
-
-        System.out.println("Signup request received for: " + request.getEmail());
 
         if (userRepository.existsByEmail(request.getEmail())) {
             return AuthResponse.builder()
@@ -36,23 +36,27 @@ public class AuthService {
         User user = User.builder()
                 .fullName(request.getFullName())
                 .email(request.getEmail())
-                .password(request.getPassword())
+
+                // BCrypt Encryption
+                .password(passwordEncoder.encode(request.getPassword()))
+
                 .college(request.getCollege())
                 .branch(request.getBranch())
                 .graduationYear(request.getGraduationYear())
                 .targetRole(request.getTargetRole())
+
                 .experienceLevel("Beginner")
                 .skills(new ArrayList<>())
                 .interests(new ArrayList<>())
+
                 .isActive(true)
                 .isEmailVerified(false)
+
                 .createdAt(LocalDateTime.now())
                 .updatedAt(LocalDateTime.now())
                 .build();
 
         userRepository.save(user);
-
-        System.out.println("User saved successfully!");
 
         return AuthResponse.builder()
                 .success(true)
