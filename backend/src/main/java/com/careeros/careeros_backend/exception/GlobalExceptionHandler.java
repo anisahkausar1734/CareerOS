@@ -5,29 +5,46 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import com.careeros.careeros_backend.exception.UserNotFoundException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-    
+
     @ExceptionHandler(UserNotFoundException.class)
-public ResponseEntity<AuthResponse> handleUserNotFoundException(
-        UserNotFoundException ex
-) {
+    public ResponseEntity<AuthResponse> handleUserNotFoundException(
+            UserNotFoundException ex
+    ) {
 
-    AuthResponse response = AuthResponse.builder()
-            .success(false)
-            .message(ex.getMessage())
-            .build();
+        AuthResponse response = AuthResponse.builder()
+                .success(false)
+                .message(ex.getMessage())
+                .build();
 
-    return new ResponseEntity<>(
-            response,
-            HttpStatus.NOT_FOUND
-    );
-}
+        return new ResponseEntity<>(
+                response,
+                HttpStatus.NOT_FOUND
+        );
+    }
+
+    @ExceptionHandler(ResumeNotFoundException.class)
+    public ResponseEntity<AuthResponse> handleResumeNotFoundException(
+            ResumeNotFoundException ex
+    ) {
+
+        AuthResponse response = AuthResponse.builder()
+                .success(false)
+                .message(ex.getMessage())
+                .build();
+
+        return new ResponseEntity<>(
+                response,
+                HttpStatus.NOT_FOUND
+        );
+    }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<AuthResponse> handleException(Exception ex) {
+    public ResponseEntity<AuthResponse> handleException(
+            Exception ex
+    ) {
 
         AuthResponse response = AuthResponse.builder()
                 .success(false)
