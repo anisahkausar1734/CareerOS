@@ -43,6 +43,9 @@ public class User {
     private String linkedinUrl;
     private String portfolioUrl;
     private String profileImageUrl;
+    private Integer currentYear;
+    private String targetDomain;
+    private String dreamCompany;
 
     // Resume Information
     private String resumeUrl;

@@ -2,11 +2,11 @@ package com.careeros.careeros_backend.service;
 
 import com.careeros.careeros_backend.dto.ProfileResponse;
 import com.careeros.careeros_backend.dto.UpdateProfileRequest;
+import com.careeros.careeros_backend.exception.UserNotFoundException;
 import com.careeros.careeros_backend.model.User;
 import com.careeros.careeros_backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import com.careeros.careeros_backend.exception.UserNotFoundException;
 
 import java.util.Optional;
 
@@ -22,12 +22,12 @@ public class UserProfileService {
                 userRepository.findByEmail(email);
 
         if (optionalUser.isEmpty()) {
-            throw new UserNotFoundException("User not found"); 
+            throw new UserNotFoundException("User not found");
         }
 
         User user = optionalUser.get();
 
-       return mapToProfileResponse(user);
+        return mapToProfileResponse(user);
     }
 
     public ProfileResponse updateProfile(
@@ -57,30 +57,42 @@ public class UserProfileService {
         user.setLinkedinUrl(request.getLinkedinUrl());
         user.setPortfolioUrl(request.getPortfolioUrl());
 
-        User updatedUser = userRepository.save(user);
+        // Day 5 Context Fields
+        user.setCurrentYear(request.getCurrentYear());
+        user.setTargetDomain(request.getTargetDomain());
+        user.setDreamCompany(request.getDreamCompany());
+
+        User updatedUser =
+                userRepository.save(user);
 
         return mapToProfileResponse(updatedUser);
     }
+
     private ProfileResponse mapToProfileResponse(User user) {
 
-    return ProfileResponse.builder()
-            .fullName(user.getFullName())
-            .email(user.getEmail())
+        return ProfileResponse.builder()
+                .fullName(user.getFullName())
+                .email(user.getEmail())
 
-            .college(user.getCollege())
-            .branch(user.getBranch())
-            .graduationYear(user.getGraduationYear())
+                .college(user.getCollege())
+                .branch(user.getBranch())
+                .graduationYear(user.getGraduationYear())
 
-            .targetRole(user.getTargetRole())
-            .experienceLevel(user.getExperienceLevel())
+                .targetRole(user.getTargetRole())
+                .experienceLevel(user.getExperienceLevel())
 
-            .skills(user.getSkills())
-            .interests(user.getInterests())
+                .skills(user.getSkills())
+                .interests(user.getInterests())
 
-            .githubUrl(user.getGithubUrl())
-            .linkedinUrl(user.getLinkedinUrl())
-            .portfolioUrl(user.getPortfolioUrl())
+                .githubUrl(user.getGithubUrl())
+                .linkedinUrl(user.getLinkedinUrl())
+                .portfolioUrl(user.getPortfolioUrl())
 
-            .build();
-}
+                // Day 5 Context Fields
+                .currentYear(user.getCurrentYear())
+                .targetDomain(user.getTargetDomain())
+                .dreamCompany(user.getDreamCompany())
+
+                .build();
+    }
 }

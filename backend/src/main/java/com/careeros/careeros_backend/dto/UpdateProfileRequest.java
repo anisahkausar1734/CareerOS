@@ -28,4 +28,9 @@ public class UpdateProfileRequest {
     private String githubUrl;
     private String linkedinUrl;
     private String portfolioUrl;
+    private Integer currentYear;
+
+private String targetDomain;
+
+private String dreamCompany;
 }

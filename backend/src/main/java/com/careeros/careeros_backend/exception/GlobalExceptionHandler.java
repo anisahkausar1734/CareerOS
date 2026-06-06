@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import com.careeros.careeros_backend.exception.ResumeAnalysisException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -40,7 +41,23 @@ public class GlobalExceptionHandler {
                 HttpStatus.NOT_FOUND
         );
     }
+@ExceptionHandler(ResumeAnalysisException.class)
+public ResponseEntity<AuthResponse>
+handleResumeAnalysisException(
+        ResumeAnalysisException ex
+) {
 
+    AuthResponse response =
+            AuthResponse.builder()
+                    .success(false)
+                    .message(ex.getMessage())
+                    .build();
+
+    return new ResponseEntity<>(
+            response,
+            HttpStatus.BAD_REQUEST
+    );
+}
     @ExceptionHandler(Exception.class)
     public ResponseEntity<AuthResponse> handleException(
             Exception ex
