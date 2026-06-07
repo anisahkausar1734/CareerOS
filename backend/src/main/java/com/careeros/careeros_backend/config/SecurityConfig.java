@@ -25,8 +25,10 @@ public class SecurityConfig {
     .requestMatchers(
         "/api/auth/**",
         "/api/users/**",
-        "/api/resumes/**"
-    ).permitAll()
+        "/api/resumes/**",
+        "/api/career/**"
+)
+.permitAll()
     .anyRequest().authenticated()
 )
             .httpBasic(Customizer.withDefaults());
