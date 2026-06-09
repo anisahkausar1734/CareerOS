@@ -27,7 +27,8 @@ public class SecurityConfig {
         "/api/users/**",
         "/api/resumes/**",
         "/api/career/**",
-        "/api/projects/**"
+        "/api/projects/**",
+        "/api/ats/**"
 )
 .permitAll()
     .anyRequest().authenticated()
