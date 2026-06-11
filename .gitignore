@@ -12,3 +12,6 @@ dist/
 
 # IDE Files
 .idea/
+
+.env.local
+.env.development.local

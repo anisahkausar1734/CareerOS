@@ -1,10 +1,10 @@
 package com.careeros.careeros_backend.controller;
 
 import com.careeros.careeros_backend.dto.ResumeResponse;
-import com.careeros.careeros_backend.dto.UploadResumeRequest;
 import com.careeros.careeros_backend.service.ResumeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import com.careeros.careeros_backend.dto.ResumeAnalysisResponse;
 import com.careeros.careeros_backend.service.ResumeAnalysisService;
 
@@ -14,9 +14,13 @@ import com.careeros.careeros_backend.service.ResumeAnalysisService;
 public class ResumeController {
 @PostMapping("/upload")
 public ResumeResponse uploadResume(
-        @RequestBody UploadResumeRequest request
+        @RequestParam String email,
+        @RequestParam MultipartFile file
 ) {
-    return resumeService.uploadResume(request);
+
+    return resumeService
+            .uploadResume(email, file);
+} {
 }               
     private final ResumeService resumeService;
     private final ResumeAnalysisService resumeAnalysisService;

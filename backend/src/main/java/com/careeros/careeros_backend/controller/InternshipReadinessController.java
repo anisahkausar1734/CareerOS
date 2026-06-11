@@ -1,5 +1,4 @@
 package com.careeros.careeros_backend.controller;
-
 import com.careeros.careeros_backend.dto.InternshipReadinessResponse;
 import com.careeros.careeros_backend.service.InternshipReadinessService;
 import lombok.RequiredArgsConstructor;

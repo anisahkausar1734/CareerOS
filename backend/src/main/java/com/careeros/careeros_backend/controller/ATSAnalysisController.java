@@ -10,6 +10,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/ats")
 @RequiredArgsConstructor
+@CrossOrigin(
+    origins = "http://localhost:5173"
+)
 
 public class ATSAnalysisController {
 
