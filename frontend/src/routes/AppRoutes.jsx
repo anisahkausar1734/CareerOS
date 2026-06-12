@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import ProtectedRoute from "../components/ProtectedRoute";
+
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import DashboardPage from "../pages/DashboardPage";
@@ -8,71 +10,176 @@ import ATSPage from "../pages/ATSPage";
 import InternshipPage from "../pages/InternshipPage";
 import ProjectAnalysisPage from "../pages/ProjectAnalysisPage";
 import ResumeAnalyzer from "../pages/ResumeAnalyzer";
-
+import ResumeAnalysisPage from "../pages/ResumeAnalysisPage";
+import AICareerMentor from "../pages/AICareerMentor";
+import RoadmapPage from "../pages/RoadmapPage";
+import SkillGapPage from "../pages/SkillGapPage";
+import CompanyReadinessPage from "../pages/CompanyReadinessPage";
+import InterviewQuestionsPage from "../pages/InterviewQuestionsPage";
+import JobRecommendationsPage from "../pages/JobRecommendationsPage";
+import LearningResourcesPage from "../pages/LearningResourcesPage";
+import CareerProgressPage from "../pages/CareerProgressPage";
+import AdminDashboardPage from "../pages/AdminDashboardPage";
 
 function AppRoutes() {
   return (
-    
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+
         <Route
-  path="/dashboard"
+          path="/"
+          element={<LoginPage />}
+        />
+
+        <Route
+          path="/register"
+          element={<RegisterPage />}
+        />
+
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <DashboardPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/ats"
+          element={
+            <ProtectedRoute>
+              <ATSPage />
+            </ProtectedRoute>
+          }
+        />
+<Route
+  path="/skill-gap"
   element={
     <ProtectedRoute>
-      <DashboardPage />
+      <SkillGapPage />
     </ProtectedRoute>
   }
 />
 
 <Route
-  path="/profile"
+  path="/admin"
   element={
     <ProtectedRoute>
-      <ProfilePage />
+      <AdminDashboardPage />
     </ProtectedRoute>
   }
 />
 
-
-
 <Route
-  path="/ats"
+  path="/progress"
   element={
     <ProtectedRoute>
-      <ATSPage />
+      <CareerProgressPage />
     </ProtectedRoute>
   }
 />
+
 <Route
-  path="/projects"
+  path="/resources"
   element={
     <ProtectedRoute>
-      <ProjectAnalysisPage />
+      <LearningResourcesPage />
     </ProtectedRoute>
   }
 />
-<Route
-  path="/resume"
+
+        <Route
+          path="/internship"
+          element={
+            <ProtectedRoute>
+              <InternshipPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/projects"
+          element={
+            <ProtectedRoute>
+              <ProjectAnalysisPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+  path="/roadmap"
   element={
     <ProtectedRoute>
-      <ResumeAnalyzer />
+      <RoadmapPage />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/interview"
+  element={
+    <ProtectedRoute>
+      <InterviewQuestionsPage />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/jobs"
+  element={
+    <ProtectedRoute>
+      <JobRecommendationsPage />
+    </ProtectedRoute>
+  }
+/>
+
+        <Route
+          path="/resume"
+          element={
+            <ProtectedRoute>
+              <ResumeAnalyzer />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/resume-analysis"
+          element={
+            <ProtectedRoute>
+              <ResumeAnalysisPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/ai-mentor"
+          element={
+            <ProtectedRoute>
+              <AICareerMentor />
+            </ProtectedRoute>
+          }
+        />
+  <Route
+  path="/company-readiness"
+  element={
+    <ProtectedRoute>
+      <CompanyReadinessPage />
     </ProtectedRoute>
   }
 />
       </Routes>
     </BrowserRouter>
-    
   );
-  <Route
-  path="/internship"
-  element={
-    <ProtectedRoute>
-      <InternshipPage />
-    </ProtectedRoute>
-  }
-/>
 }
 
 export default AppRoutes;

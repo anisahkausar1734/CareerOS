@@ -22,6 +22,10 @@ function Navbar() {
             Dashboard
           </Link>
 
+<Link to="/roadmap">
+  Roadmap
+</Link>
+
           <Link to="/profile">
             Profile
           </Link>
@@ -41,6 +45,43 @@ function Navbar() {
 <Link to="/resume">
   Resume
 </Link>
+
+<Link to="/resume-analysis">
+  Resume Analysis
+</Link>
+
+<Link to="/ai-mentor">
+  AI Mentor
+</Link>
+
+<Link to="/skill-gap">
+  Skill Gap
+</Link>
+
+<Link to="/company-readiness">
+  Company Readiness
+</Link>
+
+<Link to="/interview">
+  Interview Prep
+</Link>
+
+<Link to="/jobs">
+  Jobs
+</Link>
+
+<Link to="/resources">
+  Resources
+</Link>
+
+<Link to="/progress">
+  Progress
+</Link>
+
+<Link to="/admin">
+  Admin
+</Link>
+
 
           <button
             onClick={handleLogout}
