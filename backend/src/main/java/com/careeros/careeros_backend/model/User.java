@@ -59,4 +59,8 @@ public class User {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private LocalDateTime lastLoginAt;
+
+    private Integer resourcesCompleted;
+    private Integer projectsCompleted;
+    private Integer certificationsCompleted;
 }

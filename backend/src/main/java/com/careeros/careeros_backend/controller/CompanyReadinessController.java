@@ -8,20 +8,21 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/career")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:5173")
 public class CompanyReadinessController {
 
     private final CompanyReadinessService
             companyReadinessService;
 
     @GetMapping(
-            "/company-readiness/google/{email}"
+            "/company-readiness/{email}"
     )
     public CompanyReadinessResponse
-    getGoogleReadiness(
+    getReadiness(
             @PathVariable String email
     ) {
 
         return companyReadinessService
-                .getGoogleReadiness(email);
+                .getReadiness(email);
     }
 }

@@ -7,6 +7,7 @@ import com.careeros.careeros_backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +29,28 @@ public class CompanyReadinessService {
         );
     }
 
+    private List<String> getAmazonSkills() {
+
+        return List.of(
+                "Java",
+                "DSA",
+                "System Design",
+                "AWS",
+                "Git"
+        );
+    }
+
+    private List<String> getMicrosoftSkills() {
+
+        return List.of(
+                "Java",
+                "DSA",
+                "Azure",
+                "System Design",
+                "Git"
+        );
+    }
+
     private List<String> getStartupSkills() {
 
         return List.of(
@@ -41,7 +64,34 @@ public class CompanyReadinessService {
         );
     }
 
-    public CompanyReadinessResponse getGoogleReadiness(
+    private List<String> getRequiredSkills(
+            String company
+    ) {
+
+        if (company == null) {
+            return List.of();
+        }
+
+        switch (company.toUpperCase()) {
+
+            case "GOOGLE":
+                return getGoogleSkills();
+
+            case "AMAZON":
+                return getAmazonSkills();
+
+            case "MICROSOFT":
+                return getMicrosoftSkills();
+
+            case "STARTUP":
+                return getStartupSkills();
+
+            default:
+                return List.of();
+        }
+    }
+
+    public CompanyReadinessResponse getReadiness(
             String email
     ) {
 
@@ -49,6 +99,7 @@ public class CompanyReadinessService {
                 userRepository.findByEmail(email);
 
         if (optionalUser.isEmpty()) {
+
             throw new UserNotFoundException(
                     "User not found"
             );
@@ -56,29 +107,69 @@ public class CompanyReadinessService {
 
         User user = optionalUser.get();
 
+        String company =
+                user.getDreamCompany();
+
         List<String> userSkills =
-                user.getSkills();
+                user.getSkills() != null
+                        ? user.getSkills()
+                        : List.of();
 
         List<String> requiredSkills =
-                getGoogleSkills();
+                getRequiredSkills(company);
 
-        long matchedSkills =
-                requiredSkills.stream()
-                        .filter(userSkills::contains)
-                        .count();
+        List<String> strengths =
+                new ArrayList<>();
 
-        int readiness =
-                (int) ((matchedSkills * 100)
-                        / requiredSkills.size());
+        List<String> missingSkills =
+                new ArrayList<>();
+
+        for (String skill : requiredSkills) {
+
+            if (userSkills.contains(skill)) {
+
+                strengths.add(skill);
+
+            } else {
+
+                missingSkills.add(skill);
+            }
+        }
+
+        int readiness = 0;
+
+        if (!requiredSkills.isEmpty()) {
+
+            readiness =
+                    (strengths.size() * 100)
+                            / requiredSkills.size();
+        }
+
+        String feedback;
+
+        if (readiness >= 80) {
+
+            feedback =
+                    "Excellent profile for "
+                            + company;
+
+        } else if (readiness >= 60) {
+
+            feedback =
+                    "Good profile. Improve missing skills.";
+
+        } else {
+
+            feedback =
+                    "Focus on core skills and DSA preparation.";
+        }
 
         return CompanyReadinessResponse.builder()
-                .company("GOOGLE")
+                .company(company)
                 .readinessPercentage(readiness)
-                .feedback(
-                        readiness >= 70
-                                ? "Strong profile for Google"
-                                : "Need stronger DSA and problem solving"
-                )
+                .strengths(strengths)
+                .missingSkills(missingSkills)
+                .feedback(feedback)
                 .build();
     }
 }

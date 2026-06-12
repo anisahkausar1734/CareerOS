@@ -31,17 +31,54 @@ public class SkillGapService {
         );
     }
 
+    private List<String> getFullStackSkills() {
+
+        return List.of(
+                "JavaScript",
+                "React",
+                "Node.js",
+                "MongoDB",
+                "REST APIs",
+                "Git",
+                "HTML",
+                "CSS"
+        );
+    }
+
+    private List<String> getDataAnalystSkills() {
+
+        return List.of(
+                "Python",
+                "SQL",
+                "Excel",
+                "Power BI",
+                "Statistics",
+                "Data Visualization"
+        );
+    }
+
     private List<String> getRequiredSkills(
             String targetRole
     ) {
 
-        if ("Backend Developer"
-                .equalsIgnoreCase(targetRole)) {
-
-            return getBackendDeveloperSkills();
+        if (targetRole == null) {
+            return List.of();
         }
 
-        return List.of();
+        switch (targetRole.toLowerCase()) {
+
+            case "backend developer":
+                return getBackendDeveloperSkills();
+
+            case "full stack developer":
+                return getFullStackSkills();
+
+            case "data analyst":
+                return getDataAnalystSkills();
+
+            default:
+                return List.of();
+        }
     }
 
     public SkillGapResponse getSkillGap(
@@ -49,13 +86,18 @@ public class SkillGapService {
             List<String> currentSkills
     ) {
 
+        List<String> userSkills =
+        currentSkills != null
+                ? currentSkills
+                : List.of();
+
         List<String> requiredSkills =
                 getRequiredSkills(targetRole);
 
         List<String> missingSkills =
                 requiredSkills.stream()
                         .filter(skill ->
-                                !currentSkills.contains(skill))
+                                !userSkills.contains(skill))
                         .toList();
 
         int matchPercentage = 0;
@@ -70,11 +112,12 @@ public class SkillGapService {
         }
 
         return SkillGapResponse.builder()
-                .targetRole(targetRole)
-                .currentSkills(currentSkills)
-                .missingSkills(missingSkills)
-                .skillMatchPercentage(matchPercentage)
-                .build();
+        .targetRole(targetRole)
+        .currentSkills(userSkills)
+        .missingSkills(missingSkills)
+        .skillMatchPercentage(matchPercentage)
+        .readinessScore(matchPercentage)
+        .build();
     }
 
     public SkillGapResponse getSkillGap(
@@ -85,6 +128,7 @@ public class SkillGapService {
                 userRepository.findByEmail(email);
 
         if (optionalUser.isEmpty()) {
+
             throw new UserNotFoundException(
                     "User not found"
             );

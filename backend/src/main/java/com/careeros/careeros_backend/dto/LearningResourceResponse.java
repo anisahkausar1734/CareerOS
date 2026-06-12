@@ -11,15 +11,9 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SkillGapResponse {
+public class LearningResourceResponse {
 
     private String targetRole;
 
-    private List<String> currentSkills;
-
-    private List<String> missingSkills;
-
-    private Integer skillMatchPercentage;
-
-    private Integer readinessScore;
+    private List<String> resources;
 }

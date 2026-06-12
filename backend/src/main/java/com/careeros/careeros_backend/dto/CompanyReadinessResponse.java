@@ -1,5 +1,7 @@
 package com.careeros.careeros_backend.dto;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,4 +18,8 @@ public class CompanyReadinessResponse {
     private Integer readinessPercentage;
 
     private String feedback;
+
+    private List<String> strengths;
+
+    private List<String> missingSkills;
 }

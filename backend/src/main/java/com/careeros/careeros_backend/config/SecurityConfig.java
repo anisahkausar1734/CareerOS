@@ -67,7 +67,14 @@ public class SecurityConfig {
                                 "/api/career/**",
                                 "/api/projects/**",
                                 "/api/ats/**",
-                                "/api/internship/**"
+                                "/api/internship/**",
+                                "/api/gemini/**",
+                                "/api/roadmap/**",
+                                "/api/interview/**",
+                                "/api/jobs/**",
+                                "/api/resources/**",
+                                "/api/progress/**",
+                                "/api/admin/**"
                         )
                         .permitAll()
                         .anyRequest()
