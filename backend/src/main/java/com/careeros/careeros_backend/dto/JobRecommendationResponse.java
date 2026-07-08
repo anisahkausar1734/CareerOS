@@ -15,5 +15,5 @@ public class JobRecommendationResponse {
 
     private String targetRole;
 
-    private List<String> recommendedJobs;
+    private List<JobListing> jobs;
 }

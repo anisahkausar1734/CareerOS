@@ -1,60 +1,195 @@
 package com.careeros.careeros_backend.service;
 
 import com.careeros.careeros_backend.dto.CareerProgressResponse;
-import com.careeros.careeros_backend.exception.UserNotFoundException;
-import com.careeros.careeros_backend.model.User;
-import com.careeros.careeros_backend.repository.UserRepository;
+import com.careeros.careeros_backend.dto.InternshipReadinessResponse;
+import com.careeros.careeros_backend.dto.JobReadinessResponse;
+import com.careeros.careeros_backend.dto.ResumeAnalysisResponse;
+import com.careeros.careeros_backend.model.StudentProfile;
+import com.careeros.careeros_backend.repository.StudentProfileRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import com.careeros.careeros_backend.dto.ProjectIntelligenceResponse;
+
 
 @Service
 @RequiredArgsConstructor
 public class CareerProgressService {
 
-    private final UserRepository userRepository;
 
-    public CareerProgressResponse getProgress(
-            String email
-    ) {
+    private final ResumeAnalysisService
+        resumeAnalysisService;
 
-        User user =
-                userRepository
-                        .findByEmail(email)
-                        .orElseThrow(
-                                () -> new UserNotFoundException(
-                                        "User not found"
-                                )
-                        );
+private final InternshipReadinessService
+        internshipReadinessService;
 
-        int resources =
-                user.getResourcesCompleted() != null
-                        ? user.getResourcesCompleted()
-                        : 0;
+private final JobReadinessService
+        jobReadinessService;
 
-        int projects =
-                user.getProjectsCompleted() != null
-                        ? user.getProjectsCompleted()
-                        : 0;
+private final StudentProfileRepository
+        studentProfileRepository;
 
-        int certifications =
-                user.getCertificationsCompleted() != null
-                        ? user.getCertificationsCompleted()
-                        : 0;
+private final ProjectService
+        projectService;        
 
-        int overallProgress =
-                Math.min(
-                        ((resources * 10)
-                        + (projects * 20)
-                        + (certifications * 15)),
-                        100
+   public CareerProgressResponse getProgress(
+        String email
+) {
+
+    StudentProfile profile =
+            studentProfileRepository
+                    .findByEmail(email)
+                    .orElseThrow();
+
+    ResumeAnalysisResponse resume =
+            resumeAnalysisService
+                .getCachedAnalysis(email);
+                
+    InternshipReadinessResponse internship =
+            internshipReadinessService
+                    .getReadiness(email);
+
+    JobReadinessResponse job =
+            jobReadinessService
+                    .getReadiness(email);
+
+                    ProjectIntelligenceResponse projectIntel =
+        projectService
+                .getProjectIntelligence(
+                        email
                 );
 
-        return CareerProgressResponse
-                .builder()
-                .resourcesCompleted(resources)
-                .projectsCompleted(projects)
-                .certificationsCompleted(certifications)
-                .overallProgress(overallProgress)
-                .build();
-    }
+    int completedTasks = 0;
+
+    if(Boolean.TRUE.equals(profile.getSkillGapCompleted()))
+        completedTasks++;
+
+    if(Boolean.TRUE.equals(profile.getRoadmapCompleted()))
+        completedTasks++;
+
+    if(Boolean.TRUE.equals(profile.getResumeAnalysisCompleted()))
+        completedTasks++;
+
+    if(Boolean.TRUE.equals(profile.getInterviewCompleted()))
+        completedTasks++;
+
+    if(Boolean.TRUE.equals(profile.getApplicationsStarted()))
+        completedTasks++;
+
+    int totalTasks = 5;
+
+    int executionProgress =
+            (completedTasks * 100)
+                    / totalTasks;
+
+    return CareerProgressResponse
+            .builder()
+
+            .careerReadiness(
+        calculateCareerReadiness(
+                resume,
+                internship,
+                job,
+                projectIntel,
+                executionProgress
+        )
+)
+
+            .resumeScore(
+                    resume.getResumeScore()
+            )
+
+            .atsScore(
+                    resume.getAtsScore()
+            )
+
+            .internshipReadiness(
+                    internship.getReadinessScore()
+            )
+
+            .jobReadiness(
+                    job.getReadinessScore()
+            )
+
+            .executionProgress(
+                    executionProgress
+            )
+
+            .completedTasks(
+                    completedTasks
+            )
+
+            .totalTasks(
+                    totalTasks
+            )
+
+            .status(
+                    executionProgress >= 80
+                            ? "Career Ready"
+
+                            : executionProgress >= 50
+                            ? "On Track"
+
+                            : "Needs Improvement"
+            )
+
+            .build();
+}
+
+private Integer calculateCareerReadiness(
+
+        ResumeAnalysisResponse resume,
+
+        InternshipReadinessResponse internship,
+
+        JobReadinessResponse job,
+
+        ProjectIntelligenceResponse projectIntel,
+
+        Integer executionProgress
+
+)
+{
+
+    double score =
+
+            (resume.getResumeScore() * 0.20)
+
+            +
+
+            (resume.getAtsScore() * 0.15)
+
+            +
+
+            (
+                    projectIntel
+                            .getOverallProjectScore()
+                    * 0.25
+            )
+
+            +
+
+            (
+                    internship
+                            .getReadinessScore()
+                    * 0.15
+            )
+
+            +
+
+            (
+                    job
+                            .getReadinessScore()
+                    * 0.15
+            )
+
+            +
+
+            (
+                    executionProgress
+                    * 0.10
+            );
+
+    return (int) Math.round(score);
+}
+
 }

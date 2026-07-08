@@ -4,11 +4,9 @@ import ProtectedRoute from "../components/ProtectedRoute";
 
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
-import DashboardPage from "../pages/DashboardPage";
-import ProfilePage from "../pages/ProfilePage";
 import ATSPage from "../pages/ATSPage";
-import InternshipPage from "../pages/InternshipPage";
-import ProjectAnalysisPage from "../pages/ProjectAnalysisPage";
+import InternshipAnalyzerPage from "../pages/InternshipAnalyzerPage";
+import ProjectsPage from "../pages/ProjectsPage";
 import ResumeAnalyzer from "../pages/ResumeAnalyzer";
 import ResumeAnalysisPage from "../pages/ResumeAnalysisPage";
 import AICareerMentor from "../pages/AICareerMentor";
@@ -20,6 +18,20 @@ import JobRecommendationsPage from "../pages/JobRecommendationsPage";
 import LearningResourcesPage from "../pages/LearningResourcesPage";
 import CareerProgressPage from "../pages/CareerProgressPage";
 import AdminDashboardPage from "../pages/AdminDashboardPage";
+import ApplicationTrackerPage from "../pages/ApplicationTrackerPage";
+import CopilotPage from "../pages/CopilotPage";
+import InterviewPage from "../pages/InterviewPage";
+import InterviewReportPage from "../pages/InterviewReportPage";
+import StudentProfilePage from "../pages/StudentProfilePage";
+import ResumeCenterPage from "../pages/ResumeCenterPage";
+import ResumeRefinementPage from "../pages/ResumeRefinementPage";
+import InternshipPage from "../pages/InternshipRecommendationsPage";
+import CareerIntelligencePage from "../pages/CareerIntelligencePage";
+import ProfileEditPage from "../pages/ProfileEditPage";
+import DashboardPage from "../pages/DashboardPage";
+import ProfileSetupPage from "../pages/ProfileSetupPage";
+
+
 
 function AppRoutes() {
   return (
@@ -36,32 +48,42 @@ function AppRoutes() {
           element={<RegisterPage />}
         />
 
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <DashboardPage />
-            </ProtectedRoute>
-          }
-        />
+       
+
+
+
+<Route
+    path="/dashboard"
+    element={
+        <ProtectedRoute>
+            <DashboardPage />
+        </ProtectedRoute>
+    }
+/>
+
+
 
         <Route
           path="/profile"
           element={
             <ProtectedRoute>
-              <ProfilePage />
+              <StudentProfilePage />
             </ProtectedRoute>
           }
         />
 
-        <Route
-          path="/ats"
-          element={
-            <ProtectedRoute>
-              <ATSPage />
-            </ProtectedRoute>
-          }
-        />
+
+
+<Route
+  path="/profile-setup"
+  element={
+    <ProtectedRoute>
+      <ProfileSetupPage />
+    </ProtectedRoute>
+  }
+/>
+
+       
 <Route
   path="/skill-gap"
   element={
@@ -72,12 +94,53 @@ function AppRoutes() {
 />
 
 <Route
+  path="/resume-refinement"
+  element={<ResumeRefinementPage />}
+/>
+
+<Route
+  path="/resume-center"
+  element={<ResumeCenterPage />}
+/>
+
+<Route
+    path="/interview"
+    element={<InterviewPage />}
+/>
+
+<Route
+    path="/interview-report"
+    element={<InterviewReportPage />}
+/>
+
+
+
+<Route
+    path="/ats"
+    element={
+        <ProtectedRoute>
+            <ATSPage />
+        </ProtectedRoute>
+    }
+/>
+
+<Route
+    path="/copilot"
+    element={<CopilotPage />}
+/>
+
+<Route
   path="/admin"
   element={
     <ProtectedRoute>
       <AdminDashboardPage />
     </ProtectedRoute>
   }
+/>
+
+<Route
+    path="/application-tracker"
+    element={<ApplicationTrackerPage />}
 />
 
 <Route
@@ -98,23 +161,15 @@ function AppRoutes() {
   }
 />
 
-        <Route
-          path="/internship"
-          element={
-            <ProtectedRoute>
-              <InternshipPage />
-            </ProtectedRoute>
-          }
-        />
+       <Route
+  path="/internship-analyzer"
+  element={<InternshipAnalyzerPage />}
+/>
 
-        <Route
-          path="/projects"
-          element={
-            <ProtectedRoute>
-              <ProjectAnalysisPage />
-            </ProtectedRoute>
-          }
-        />
+       <Route
+  path="/projects"
+  element={<ProjectsPage />}
+/>
 
         <Route
   path="/roadmap"
@@ -142,6 +197,35 @@ function AppRoutes() {
     </ProtectedRoute>
   }
 />
+
+<Route
+  path="/internships"
+  element={
+    <ProtectedRoute>
+  <InternshipPage />
+    </ProtectedRoute>
+  }
+/>
+
+
+<Route
+    path="/profile/edit"
+    element={
+        <ProfileEditPage />
+    }
+/>
+
+
+
+<Route
+  path="/career-intelligence"
+  element={
+    <ProtectedRoute>
+      <CareerIntelligencePage />
+    </ProtectedRoute>
+  }
+/>
+
 
         <Route
           path="/resume"

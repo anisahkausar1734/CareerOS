@@ -1,33 +1,49 @@
 package com.careeros.careeros_backend.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class ProjectAnalysisResponse {
 
-    private String projectName;
+    private Integer projectScore;
 
-    private Integer complexityScore;
+    private Integer resumeImpact;
 
-    private Integer technicalScore;
+    private Integer internshipImpact;
 
-    private Integer architectureScore;
+    private Integer jobImpact;
 
-    private Integer deploymentScore;
+    private String verdict;
 
-    private Integer impactScore;
+    private List<String> strengths;
 
-    private Integer innovationScore;
+    private List<String> weaknesses;
 
-    private Integer collaborationScore;
+    private List<String> improvements;
 
-    private Integer finalScore;
+    private Integer technicalComplexity;
 
-    private String feedback;
+private Integer codeQuality;
+
+private Integer architectureScore;
+
+private Integer deploymentScore;
+
+private Integer roleAlignment;
+
+private Integer industryValue;
+
+private Integer githubScore;
+
+private Integer engineeringQuality;
+
+private Integer productionReadiness;
+
+private String projectName;
+
+
 }

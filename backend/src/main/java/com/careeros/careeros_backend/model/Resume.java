@@ -27,4 +27,6 @@ public class Resume {
     private String resumeUrl;
 
     private LocalDateTime uploadedAt;
+
+    private String resumeText;
 }

@@ -5,27 +5,23 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class CareerAnalysisResponse {
 
-    private Integer overallScore;
+    private Integer careerReadinessScore;
 
-    private String targetDomain;
+    private Integer jobContribution;
 
-    private String dreamCompany;
+    private Integer internshipContribution;
 
-    private ScoreBreakdown scoreBreakdown;
+    private Integer resumeContribution;
 
-    private List<LostPoint> lostPoints;
+    private Integer interviewContribution;
 
-    private List<String> recommendedSkills;
+    private Integer learningContribution;
 
-    private List<String> recommendedProjects;
-
-    private String nextAction;
+    private String status;
 }

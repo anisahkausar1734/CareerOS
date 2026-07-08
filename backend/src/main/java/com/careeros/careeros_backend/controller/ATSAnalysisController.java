@@ -5,35 +5,22 @@ import com.careeros.careeros_backend.service.ATSAnalysisService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/ats")
 @RequiredArgsConstructor
-@CrossOrigin(
-    origins = "http://localhost:5173"
-)
-
+@CrossOrigin(origins = "*")
 public class ATSAnalysisController {
 
     private final ATSAnalysisService
             atsAnalysisService;
 
-    @PostMapping("/analyze")
-    public ATSAnalysisResponse analyzeResume(
-            @RequestBody List<String> skills
+    @GetMapping("/analyze/{email}")
+    public ATSAnalysisResponse analyzeATS(
+            @PathVariable
+            String email
     ) {
 
         return atsAnalysisService
-                .analyzeResume(skills);
+                .analyzeResume(email);
     }
-    @GetMapping("/{email}")
-public ATSAnalysisResponse
-analyzeResumeByEmail(
-        @PathVariable String email
-) {
-
-    return atsAnalysisService
-            .analyzeResume(email);
-}
 }

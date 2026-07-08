@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
 
 function AICareerMentor() {
 
@@ -75,29 +75,190 @@ function AICareerMentor() {
 
   return (
     <>
-      <Navbar />
 
-      <div className="bg-gray-100 min-h-screen p-6">
+      <Sidebar />
 
-        <div className="max-w-5xl mx-auto">
+<div
+  className="
+    ml-72
+    min-h-screen
+    bg-[#F5F3F8]
+  "
+>
 
-          <h1 className="text-3xl font-bold mb-2">
-            AI Career Mentor
-          </h1>
+  <div className="p-8">
 
-          <p className="text-gray-600 mb-6">
-            Ask career, resume, internship,
-            project or interview questions.
-          </p>
+    <div className="max-w-6xl mx-auto">
 
-          <div className="bg-white rounded-xl shadow p-4 h-[500px] overflow-y-auto">
+         <div
+  className="
+    bg-gradient-to-r
+    from-[#7367F0]
+    to-[#9D8DFF]
+    text-white
+    rounded-3xl
+    p-8
+    mb-8
+  "
+>
 
+  <p
+    className="
+      uppercase
+      tracking-wider
+      text-sm
+      text-white/80
+      mb-2
+    "
+  >
+    Career Intelligence
+  </p>
+
+  <h1
+    className="
+      text-4xl
+      font-bold
+      mb-3
+    "
+  >
+    🤖 AI Career Mentor
+  </h1>
+
+  <p
+    className="
+      text-white/90
+      max-w-3xl
+    "
+  >
+    Your personal AI career coach for
+    resumes, internships, jobs, projects,
+    interview preparation and career growth.
+  </p>
+
+  <div
+    className="
+      flex
+      flex-wrap
+      gap-3
+      mt-5
+    "
+  >
+
+    <span className="bg-white/20 px-4 py-2 rounded-xl">
+      📄 Resume Advice
+    </span>
+
+    <span className="bg-white/20 px-4 py-2 rounded-xl">
+      🎤 Interview Prep
+    </span>
+
+    <span className="bg-white/20 px-4 py-2 rounded-xl">
+      💼 Job Guidance
+    </span>
+
+    <span className="bg-white/20 px-4 py-2 rounded-xl">
+      🚀 Career Planning
+    </span>
+
+  </div>
+
+</div>
+
+<div
+  className="
+    grid
+    md:grid-cols-3
+    gap-4
+    mb-8
+  "
+>
+
+  {[
+    "🎯 How to improve ATS Score",
+    "📄 Review My Resume",
+    "💼 Internship Tips",
+    "🎤 Speaking Skills",
+    "🚀 Projects to build",
+    "🧠 Skill Gap Analysis"
+  ].map((item) => (
+
+    <button
+      key={item}
+      onClick={() => setPrompt(item)}
+      className="
+        bg-white
+        rounded-2xl
+        border
+        border-[#E8E6EF]
+        p-5
+        text-left
+        hover:border-[#7367F0]
+        hover:shadow-md
+        transition
+      "
+    >
+      {item}
+    </button>
+
+  ))}
+
+</div>
+
+
+
+<div
+  className="
+    bg-white
+    rounded-3xl
+    border
+    border-[#E8E6EF]
+    p-6
+h-[calc(150vh-420px)]
+    overflow-y-auto
+    shadow-sm
+  "
+>
             {messages.length === 0 && (
 
               <div className="text-gray-400 text-center mt-20">
 
-                Try asking:
+<div
+  className="
+    flex
+    flex-col
+    items-center
+    justify-center
+    h-full
+    text-center
+  "
+>
 
+  <div className="text-6xl mb-4">
+    🤖
+  </div>
+
+  <h2
+    className="
+      text-2xl
+      font-bold
+      mb-3
+    "
+  >
+    Start a Career Conversation
+  </h2>
+
+  <p
+    className="
+      text-gray-500
+      max-w-md
+    "
+  >
+    Ask anything about internships,
+    resumes, projects, interviews
+    or career growth.
+  </p>
+
+</div>
                 <div className="mt-4 space-y-2">
 
                   <p>
@@ -130,12 +291,12 @@ function AICareerMentor() {
               >
 
                 <div
-                  className={`max-w-[75%] p-3 rounded-xl ${
-                    message.sender === "user"
-                      ? "bg-blue-500 text-white"
-                      : "bg-gray-200"
-                  }`}
-                >
+  className={`max-w-[75%] p-4 rounded-2xl ${
+    message.sender === "user"
+      ? "bg-[#7367F0] text-white"
+      : "bg-[#F5F3F8] border border-[#E8E6EF]"
+  }`}
+>
 
 <div
   className="
@@ -168,8 +329,18 @@ function AICareerMentor() {
 
           </div>
 
-          <div className="mt-4 flex gap-3">
-
+<div
+  className="
+    mt-6
+    bg-white
+    rounded-2xl
+    border
+    border-[#E8E6EF]
+    p-3
+    flex
+    gap-3
+  "
+>
             <input
               type="text"
               value={prompt}
@@ -187,7 +358,8 @@ function AICareerMentor() {
 
             <button
               onClick={sendMessage}
-              className="bg-blue-600 text-white px-6 rounded-lg"
+              className="bg-[#7367F0]
+hover:opacity-90 text-white px-6 rounded-lg"
             >
               Send
             </button>
@@ -195,6 +367,8 @@ function AICareerMentor() {
           </div>
 
         </div>
+
+      </div>
 
       </div>
     </>

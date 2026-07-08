@@ -1,17 +1,70 @@
-function ScoreCard({ title, score }) {
+function ScoreCard({
+  title,
+  score
+}) {
+
   return (
-    <div className="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition duration-300">
 
-      <h3 className="text-gray-500 text-sm font-medium">
+    <div
+      className="
+        bg-white
+        rounded-2xl
+        border
+        border-[#E8E6EF]
+        p-6
+        shadow-sm
+      "
+    >
+
+      <p
+        className="
+          text-[#8A88A1]
+          text-sm
+          font-medium
+          mb-3
+        "
+      >
         {title}
-      </h3>
+      </p>
 
-      <h1 className="text-4xl font-bold mt-3">
+      <h1
+        className="
+          text-5xl
+          font-semibold
+          text-[#4A4A4A]
+        "
+      >
         {score}
       </h1>
 
+      <div
+        className="
+          mt-4
+          h-1
+          w-full
+          bg-[#F1EFF7]
+          rounded-full
+          overflow-hidden
+        "
+      >
+
+        <div
+          className="
+            h-full
+            bg-[#7367F0]
+            rounded-full
+          "
+          style={{
+            width: `${Math.min(score, 100)}%`
+          }}
+        />
+
+      </div>
+
     </div>
+
   );
+
 }
 
 export default ScoreCard;

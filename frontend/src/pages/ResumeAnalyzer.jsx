@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
+import Topbar from "../components/Topbar";
 
 function ResumeAnalyzer() {
 
@@ -90,13 +91,91 @@ function ResumeAnalyzer() {
 
   return (
     <>
-      <Navbar />
+  <Sidebar />
 
-      <div className="p-6">
+  <div
+    className="
+      ml-72
+      min-h-screen
+      bg-[#F5F3F8]
+    "
+  >
 
-        <h1 className="text-3xl font-bold mb-6">
+    <Topbar />
+
+    <div className="p-8">
+
+      {/* Header */}
+
+      <div
+        className="
+          bg-white
+          rounded-3xl
+          border
+          border-[#E8E6EF]
+          p-8
+          mb-8
+        "
+      >
+
+        <p
+          className="
+            uppercase
+            tracking-wider
+            text-[#7367F0]
+            text-sm
+            mb-2
+          "
+        >
           Resume Management
+        </p>
+
+        <h1
+          className="
+            text-4xl
+            font-bold
+            text-[#4A4A4A]
+          "
+        >
+          Resume Center
         </h1>
+
+        <p
+          className="
+            text-gray-500
+            mt-2
+          "
+        >
+          Upload your resume to unlock
+          AI-powered analysis,
+          ATS optimization and
+          personalized recommendations.
+        </p>
+
+      </div>
+
+      {/* Upload Card */}
+
+      <div
+        className="
+          bg-white
+          rounded-3xl
+          border
+          border-[#E8E6EF]
+          p-8
+          mb-8
+        "
+      >
+
+        <h2
+          className="
+            text-2xl
+            font-semibold
+            mb-6
+          "
+        >
+          Upload Resume
+        </h2>
 
         <input
           type="file"
@@ -106,53 +185,126 @@ function ResumeAnalyzer() {
               e.target.files[0]
             )
           }
+          className="
+            w-full
+            p-4
+            border
+            border-[#E8E6EF]
+            rounded-xl
+            mb-6
+          "
         />
-
-        <br /><br />
 
         <button
           onClick={uploadResume}
-          className="bg-blue-500 text-white px-4 py-2 rounded"
+          className="
+            bg-[#7367F0]
+            hover:bg-[#6355e8]
+            text-white
+            px-8
+            py-3
+            rounded-xl
+            transition
+          "
         >
           Upload Resume
         </button>
 
-        <hr className="my-6" />
+      </div>
 
-        {resume && (
+      {/* Resume Info */}
 
-          <div>
+      {resume && (
 
-            <h2 className="text-2xl font-semibold">
-              Uploaded Resume
-            </h2>
+        <div
+          className="
+            bg-white
+            rounded-3xl
+            border
+            border-[#E8E6EF]
+            p-8
+          "
+        >
 
-            <p>
-              File:
-              {" "}
-              {resume.resumeFileName}
-            </p>
+          <h2
+            className="
+              text-2xl
+              font-semibold
+              mb-6
+            "
+          >
+            Uploaded Resume
+          </h2>
 
-            <p>
-              Uploaded:
-              {" "}
-              {resume.uploadedAt}
-            </p>
+          <div
+            className="
+              grid
+              md:grid-cols-2
+              gap-6
+            "
+          >
 
-            <a
-              href={resume.resumeUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-600 underline"
-            >
-              View Resume
-            </a>
+            <div>
+
+              <p className="text-gray-500">
+                File Name
+              </p>
+
+              <h3
+                className="
+                  font-semibold
+                  text-lg
+                "
+              >
+                {resume.resumeFileName}
+              </h3>
+
+            </div>
+
+            <div>
+
+              <p className="text-gray-500">
+                Uploaded At
+              </p>
+
+              <h3
+                className="
+                  font-semibold
+                  text-lg
+                "
+              >
+                {resume.uploadedAt}
+              </h3>
+
+            </div>
 
           </div>
-        )}
 
-      </div>
-    </>
+          <a
+            href={resume.resumeUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="
+              inline-block
+              mt-6
+              bg-[#F5F3F8]
+              px-6
+              py-3
+              rounded-xl
+              hover:bg-[#ECEAF5]
+            "
+          >
+            View Resume
+          </a>
+
+        </div>
+
+      )}
+
+    </div>
+
+  </div>
+</>
   );
 }
 

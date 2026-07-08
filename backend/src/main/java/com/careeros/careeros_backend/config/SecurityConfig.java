@@ -63,10 +63,8 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/api/auth/**",
                                 "/api/users/**",
-                                "/api/resumes/**",
                                 "/api/career/**",
                                 "/api/projects/**",
-                                "/api/ats/**",
                                 "/api/internship/**",
                                 "/api/gemini/**",
                                 "/api/roadmap/**",
@@ -74,7 +72,37 @@ public class SecurityConfig {
                                 "/api/jobs/**",
                                 "/api/resources/**",
                                 "/api/progress/**",
-                                "/api/admin/**"
+                                "/api/admin/**",
+                                "/api/job-match/**",
+                                "/api/applications/**",
+                                "/api/application-insights/**",
+                                "/api/copilot/**",
+                                "/api/interview/**",
+                                "/api/student-profile/**",
+                                "/api/skill-gap/**",
+                                "/api/ats/**",
+                                "/api/resumes/**",
+                                "/api/refine/**",
+                                "/api/resume-center/**",
+                                "/api/resume-gap/**",
+                                "/api/resume-refinement/**",
+                                "/api/internship-analysis/**",
+                                "/api/internships/**",
+                                "/api/internship-match/**", 
+                                "/api/github/**",
+                                "/api/job-readiness/**",
+                                "/api/internship/**",
+                                "/api/career-analysis/**",
+                                "/api/analyze/**",
+                                "/api/resume-analysis/**",
+                                "/api/youtube/**",
+                                "/api/intelligence/**",
+                                "/api/projects/intelligence/**",
+                                "/api/career-insight/**",
+                                "/api/projects/blueprint/**",
+                                "/api/resources/search/**"
+   
+
                         )
                         .permitAll()
                         .anyRequest()
