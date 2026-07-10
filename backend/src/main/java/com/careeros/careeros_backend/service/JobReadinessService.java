@@ -40,32 +40,6 @@ public class JobReadinessService {
                 resumeAnalysisService
                 .getCachedAnalysis(email);
 
-        List<Project> topProjects =
-                projectRepository
-                        .findByEmail(email)
-                        .stream()
-                        .filter(
-                                p ->
-                                        p.getProjectScore()
-                                                != null
-                        )
-                        .sorted(
-                                Comparator.comparing(
-                                        Project::getProjectScore
-                                ).reversed()
-                        )
-                        .limit(3)
-                        .collect(
-                                Collectors.toList()
-                        );
-
-        double projectScore =
-                topProjects.stream()
-                        .mapToInt(
-                                Project::getProjectScore
-                        )
-                        .average()
-                        .orElse(0);
 
         int skillsContribution =
 
@@ -75,12 +49,6 @@ public class JobReadinessService {
                                         * 0.25
                         );
 
-        int projectContribution =
-
-                (int)
-                        (
-                                projectScore * 0.25
-                        );
 
         int resumeContribution =
 
@@ -108,7 +76,6 @@ public class JobReadinessService {
 
                         +
 
-                        projectContribution
 
                         +
 
@@ -137,9 +104,7 @@ public class JobReadinessService {
                         skillsContribution
                 )
 
-                .projectContribution(
-                        projectContribution
-                )
+
 
                 .resumeContribution(
                         resumeContribution

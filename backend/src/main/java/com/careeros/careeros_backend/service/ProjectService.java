@@ -1,7 +1,7 @@
 package com.careeros.careeros_backend.service;
 
 import com.careeros.careeros_backend.dto.CreateProjectRequest;
-import com.careeros.careeros_backend.dto.ProjectAnalysisResponse;
+import com.careeros.careeros_backend.dto.projectanalysis.ProjectAnalysisResponse;
 import com.careeros.careeros_backend.dto.ProjectIntelligenceResponse;
 import com.careeros.careeros_backend.dto.ProjectResponse;
 import com.careeros.careeros_backend.dto.ProjectIntelligenceResponse;

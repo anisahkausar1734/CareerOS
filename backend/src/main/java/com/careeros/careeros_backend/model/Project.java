@@ -4,6 +4,10 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.careeros.careeros_backend.dto.github.RepositoryFingerprint;
+import com.careeros.careeros_backend.dto.projectanalysis.ProjectCareerImpact;
+import com.careeros.careeros_backend.dto.projectanalysis.ProjectEngineeringAnalysis;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -29,42 +33,17 @@ public class Project {
 
     private String liveUrl;
 
-    private Integer projectScore;
+    private ProjectEngineeringAnalysis engineeringAnalysis;
 
-    private Integer resumeImpact;
+private ProjectCareerImpact careerImpact;
 
-    private Integer internshipImpact;
+private RepositoryFingerprint repositoryFingerprint;
 
-    private Integer jobImpact;
+private LocalDateTime analyzedAt;
 
-    private String verdict;
-
-    private Integer technicalComplexity;
-
-private Integer codeQuality;
-
-private Integer architectureScore;
-
-private Integer deploymentScore;
-
-private Integer roleAlignment;
-
-private Integer industryValue;
+private String analysisVersion;
 
 private Integer githubScore;
-
-
-private Integer engineeringQuality;
-
-private Integer productionReadiness;
-
-
-
-    private List<String> strengths;
-
-    private List<String> weaknesses;
-
-    private List<String> improvements;
 
     private LocalDateTime createdAt;
 

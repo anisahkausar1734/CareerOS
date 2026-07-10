@@ -1,0 +1,56 @@
+github:
+
+  important-files:
+
+    exact-names:
+      - Dockerfile
+      - LICENSE
+      - README
+      - README.md
+      - README.txt
+      - CONTRIBUTING.md
+      - CHANGELOG.md
+      - CODE_OF_CONDUCT.md
+      - SECURITY.md
+      - Procfile
+      - Makefile
+      - Jenkinsfile
+
+    contains:
+      - workflow
+      - github/workflows
+      - docker
+      - compose
+      - swagger
+      - openapi
+      - application
+      - bootstrap
+      - settings
+      - config
+
+    extensions:
+      - yml
+      - yaml
+      - json
+      - xml
+      - toml
+      - gradle
+      - kts
+      - properties
+      - env
+      - ini
+      - conf
+      - txt
+      - md
+
+    ignored-directories:
+      - node_modules
+      - target
+      - build
+      - dist
+      - .git
+      - vendor
+      - coverage
+      - out
+      - bin
+      - obj
