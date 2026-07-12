@@ -103,15 +103,6 @@ if(
             job.getReadinessScore();
 }
 
-if(
-        project.getOverallProjectScore()
-        > strongestScore
-)
-{
-    strongestArea = "Projects";
-    strongestScore =
-            project.getOverallProjectScore();
-}
 
 String weakestArea = "Resume";
 
@@ -138,15 +129,6 @@ if(
             job.getReadinessScore();
 }
 
-if(
-        project.getOverallProjectScore()
-        < weakestScore
-)
-{
-    weakestArea = "Projects";
-    weakestScore =
-            project.getOverallProjectScore();
-}
 
 String prompt = """
 You are CareerOS AI Career Advisor.
@@ -199,11 +181,9 @@ Keep answers concise.
         roadmap.getDreamRole(),
         resume.getResumeScore(),
         resume.getAtsScore(),
-        project.getOverallProjectScore(),
         job.getReadinessScore(),
         internship.getReadinessScore(),
         roadmap.getTopPrioritySkills(),
-        project.getBestProject(),
         roadmap.getNextAction()
 );
 

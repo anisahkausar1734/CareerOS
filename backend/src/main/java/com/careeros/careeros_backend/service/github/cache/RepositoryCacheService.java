@@ -4,12 +4,9 @@ import com.careeros.careeros_backend.dto.github.RepositoryEvidenceResponse;
 
 public interface RepositoryCacheService {
 
-    RepositoryEvidenceResponse getEvidence(
-
+    RepositoryEvidenceResponse getRepositoryEvidence(
             String githubUrl,
-
             boolean forceRefresh
-
     );
 
 }

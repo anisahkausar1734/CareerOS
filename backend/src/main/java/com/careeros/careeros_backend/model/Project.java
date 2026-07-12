@@ -43,7 +43,7 @@ private LocalDateTime analyzedAt;
 
 private String analysisVersion;
 
-private Integer githubScore;
+private Integer repositoryQualityScore;
 
     private LocalDateTime createdAt;
 

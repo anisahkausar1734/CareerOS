@@ -30,14 +30,16 @@ public class EngineeringAnalysisServiceImpl
                         context
                 );
 
-        String response =
-                geminiService.askGeminiCustom(
-                        prompt
-                );
-
-        return parser.parse(
-                response
+       String response =
+        geminiService.askGeminiCustom(
+                prompt
         );
+
+System.out.println("========== GEMINI RESPONSE ==========");
+System.out.println(response);
+System.out.println("====================================");
+
+return parser.parse(response);
 
     }
 

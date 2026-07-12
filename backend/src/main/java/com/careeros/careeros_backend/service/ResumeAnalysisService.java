@@ -145,17 +145,6 @@ ProjectIntelligenceResponse projectIntel =
                         email
                 );
 
-int projectCount =
-        projectIntel.getProjectCount();
-
-int projectScore =
-       projectIntel.getAverageResumeImpact();
-        projectIntel.getAverageInternshipImpact();
-        projectIntel.getAverageJobImpact();
-        
-
-double projectStrengthScore =
-        projectIntel.getOverallProjectScore();
 
     String dreamRole =
             profile.getDreamRole();
@@ -497,24 +486,6 @@ SKILLS_COVERAGE should evaluate how well the listed skills support the dream rol
 
         missingSkills,
 
-        projectCount,
-
-        projectIntel.getBestProject(),
-
-        projectStrengthScore,
-
-        projectIntel.getAverageResumeImpact(),
-
-        projectIntel.getAverageInternshipImpact(),
-
-        projectIntel.getAverageJobImpact(),
-
-        projectIntel.getAverageEngineeringQuality(),
-
-        projectIntel.getAverageProductionReadiness(),
-
-        projectIntel.getAverageRoleAlignment(),
-
         resumeText
 
 );
@@ -566,16 +537,6 @@ return mapToResponse(
   ResumeAnalysisResponse result =
         parseResumeAnalysisResponse(response);
 
-System.out.println(
-        "Project Intelligence Score = "
-        + projectStrengthScore
-);
-
-result.setProjectStrengthScore(
-        (int) Math.round(
-                projectStrengthScore
-        )
-);
 int calculatedResumeScore =
 
 (int)
@@ -587,10 +548,7 @@ int calculatedResumeScore =
 
         result.getSkillsCoverageScore() * 0.25
 
-        +
-
-        projectStrengthScore * 0.25
-
+       
         +
 
         85 * 0.10
@@ -617,9 +575,6 @@ int internshipReadiness =
 
         +
 
-        projectStrengthScore * 0.30
-
-        +
 
         calculatedResumeScore * 0.15
 
@@ -643,9 +598,6 @@ int jobReadiness =
 
         +
 
-        projectStrengthScore * 0.25
-
-        +
 
         calculatedResumeScore * 0.20
 

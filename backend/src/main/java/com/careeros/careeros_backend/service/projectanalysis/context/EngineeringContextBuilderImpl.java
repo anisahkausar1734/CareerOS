@@ -87,6 +87,17 @@ public class EngineeringContextBuilderImpl
                         documentation.getHasContributingGuide()
                 )
 
+                .facts(
+    evidence.getFacts()
+)
+
+.signals(
+    evidence.getSignals()
+)
+
+.capabilities(
+    evidence.getCapabilities()
+)
                 .buildFiles(
                         structure.getBuildFiles()
                 )

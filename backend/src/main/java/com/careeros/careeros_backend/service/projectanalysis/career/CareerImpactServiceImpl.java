@@ -109,9 +109,11 @@ public class CareerImpactServiceImpl
                         hiringSignal
                 )
 
-                .confidence(
-                        engineering.getConfidence()
-                )
+               .confidence(
+        calculateConfidence(
+                engineering
+        )
+)
 
                 .overallCareerVerdict(
                         generateVerdict(
@@ -122,6 +124,37 @@ public class CareerImpactServiceImpl
                 .build();
 
     }
+
+
+    private Integer calculateConfidence(
+        ProjectEngineeringAnalysis engineering
+) {
+
+    Integer score = engineering.getEngineeringScore();
+
+    if (score == null) {
+        return 0;
+    }
+
+    if (score >= 90) {
+        return 95;
+    }
+
+    if (score >= 80) {
+        return 90;
+    }
+
+    if (score >= 70) {
+        return 85;
+    }
+
+    if (score >= 60) {
+        return 75;
+    }
+
+    return 65;
+}
+
 
     private String generateVerdict(
             Integer score

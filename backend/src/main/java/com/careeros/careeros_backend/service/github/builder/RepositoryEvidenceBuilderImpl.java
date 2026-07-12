@@ -3,6 +3,8 @@ package com.careeros.careeros_backend.service.github.builder;
 import com.careeros.careeros_backend.dto.github.RepositoryEvidenceResponse;
 import com.careeros.careeros_backend.dto.github.RepositoryRawEvidence;
 import com.careeros.careeros_backend.dto.github.evidence.*;
+import com.careeros.careeros_backend.dto.github.intelligence.RepositoryIntelligence;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,25 +20,28 @@ public class RepositoryEvidenceBuilderImpl
     @Override
 @SuppressWarnings("unchecked")
 public RepositoryEvidenceResponse build(
-        RepositoryRawEvidence rawEvidence
-)
 
+    RepositoryRawEvidence raw,
+
+    RepositoryIntelligence intelligence
+
+)
 {
 
        Map<String, Object> graphQLResponse =
-        rawEvidence.getGraphQLResponse();
+        raw.getGraphQLResponse();
 
 List<Map<String, Object>> repositoryTree =
-        rawEvidence.getRepositoryTree();
+        raw.getRepositoryTree();
 
 List<Map<String, Object>> rootContents =
-        rawEvidence.getRootContents();
+        raw.getRootContents();
 
 Map<String, String> importantFiles =
-        rawEvidence.getImportantFiles();
+        raw.getImportantFiles();
 
 String readme =
-        rawEvidence.getReadme();
+        raw.getReadme();
 
 
        Map<String, Object> data =
@@ -78,15 +83,36 @@ EngineeringEvidence evidence =
                 importantFiles,
                 readme
         );
-
 return RepositoryEvidenceResponse.builder()
+
         .identity(identity)
+
         .health(health)
+
         .structure(structure)
+
         .documentation(documentation)
+
         .activity(activity)
+
         .deployment(deployment)
+
         .engineeringEvidence(evidence)
+
+        .intelligence(intelligence)
+
+        .facts(
+                intelligence.getFacts()
+        )
+
+        .signals(
+                intelligence.getSignals()
+        )
+
+        .capabilities(
+                intelligence.getCapabilities()
+        )
+
         .build();
 
     }
@@ -124,7 +150,7 @@ return RepositoryEvidenceResponse.builder()
                 .description(
                         (String) repository.get("description")
                 )
-
+                
                 .build();
 
     }
@@ -360,6 +386,8 @@ return RepositoryEvidenceResponse.builder()
                 .repositoryTree(tree)
 
                 .readme(readme)
+                
+                
 
                 .build();
 

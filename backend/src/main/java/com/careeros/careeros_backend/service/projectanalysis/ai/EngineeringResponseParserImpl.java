@@ -25,14 +25,21 @@ public class EngineeringResponseParserImpl
             );
 
         }
-        catch (Exception e) {
+      
+catch (Exception e) {
 
-            throw new RuntimeException(
-                    "Unable to parse engineering analysis.",
-                    e
-            );
+    System.out.println("========== JACKSON ERROR ==========");
+    e.printStackTrace();
 
-        }
+    System.out.println("========== GEMINI RESPONSE ==========");
+    System.out.println(geminiResponse);
+
+    throw new RuntimeException(
+            "Unable to parse engineering analysis.",
+            e
+    );
+
+}
 
     }
 

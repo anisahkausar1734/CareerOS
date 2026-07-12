@@ -4,6 +4,8 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.careeros.careeros_backend.dto.github.RepositoryFingerprint;
+
 import java.time.LocalDateTime;
 
 @Data
@@ -30,8 +32,7 @@ public class RepositoryEvidence {
     /*
      * Cache Validation
      */
-    private String latestCommitSha;
-
+    private RepositoryFingerprint fingerprint;
     /*
      * Entire Repository Evidence
      */

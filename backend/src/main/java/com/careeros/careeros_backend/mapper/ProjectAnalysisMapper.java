@@ -6,11 +6,8 @@ import com.careeros.careeros_backend.model.Project;
 public interface ProjectAnalysisMapper {
 
     void updateProject(
-
             Project project,
-
             ProjectAnalysisResponse analysis
-
     );
 
 }

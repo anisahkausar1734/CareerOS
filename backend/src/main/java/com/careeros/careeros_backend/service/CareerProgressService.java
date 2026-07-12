@@ -160,12 +160,7 @@ private Integer calculateCareerReadiness(
 
             +
 
-            (
-                    projectIntel
-                            .getOverallProjectScore()
-                    * 0.25
-            )
-
+          
             +
 
             (

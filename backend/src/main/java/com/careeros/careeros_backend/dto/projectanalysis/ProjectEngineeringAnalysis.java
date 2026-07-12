@@ -25,8 +25,7 @@ public class ProjectEngineeringAnalysis {
     /**
      * Confidence in the engineering analysis (0-100)
      */
-    private Integer confidence;
-
+private String confidence;
     /*
      * Architecture
      */

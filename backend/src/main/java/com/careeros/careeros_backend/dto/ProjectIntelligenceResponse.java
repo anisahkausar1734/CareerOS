@@ -1,27 +1,78 @@
 package com.careeros.careeros_backend.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProjectIntelligenceResponse {
 
-    private Integer overallProjectScore;
+    /*
+     * Portfolio Summary
+     */
+    private Integer portfolioScore;
 
-    private Integer averageEngineeringQuality;
+    private String portfolioLevel;
 
-    private Integer averageRoleAlignment;
+    private String portfolioVerdict;
+
+    /*
+     * Portfolio Statistics
+     */
+    private Integer totalProjects;
+
+    private Integer analyzedProjects;
+
+    private Integer productionReadyProjects;
+
+    private Integer deployedProjects;
+
+    private Integer openSourceProjects;
+
+    /*
+     * Engineering Intelligence
+     */
+    private Integer averageEngineeringScore;
+
+    private Integer averageTechnicalComplexity;
 
     private Integer averageProductionReadiness;
 
-    private Integer averageResumeImpact;
+    private Integer averageDocumentationQuality;
 
-    private Integer averageInternshipImpact;
+    private Integer averageInnovationScore;
 
-    private Integer averageJobImpact;
+    /*
+     * Career Intelligence
+     */
+    private Integer internshipReadiness;
 
-    private Integer projectCount;
+    private Integer resumeStrength;
 
-    private String bestProject;
+    private Integer hiringSignal;
+
+    private Integer roleAlignment;
+
+    /*
+     * Technology Intelligence
+     */
+    private List<String> strongestTechnologies;
+
+    private List<String> missingTechnologies;
+
+    /*
+     * Portfolio Insights
+     */
+    private String strongestProject;
+
+    private String recommendedNextProject;
+
+    private String overallRecommendation;
+
 }

@@ -1,10 +1,10 @@
 package com.careeros.careeros_backend.service.projectanalysis.orchestrator;
 
 import com.careeros.careeros_backend.dto.ProfileResponse;
+import com.careeros.careeros_backend.dto.github.RepositoryEvidenceResponse;
 import com.careeros.careeros_backend.dto.projectanalysis.AnalysisPurpose;
 import com.careeros.careeros_backend.dto.projectanalysis.ProjectAnalysisResponse;
 import com.careeros.careeros_backend.dto.projectanalysis.context.EngineeringContext;
-import com.careeros.careeros_backend.dto.github.RepositoryEvidenceResponse;
 import com.careeros.careeros_backend.mapper.ProfileMapper;
 import com.careeros.careeros_backend.mapper.ProjectAnalysisMapper;
 import com.careeros.careeros_backend.model.Project;
@@ -44,10 +44,109 @@ public class ProjectAnalysisOrchestratorImpl
             String projectId
     ) {
 
-        throw new UnsupportedOperationException(
-                "Will implement next."
+        // Step 1 - Load project
+        Project project = loadProject(projectId);
+
+        // Step 2 - Load student profile
+        StudentProfile studentProfile =
+                loadStudentProfile(project.getEmail());
+
+        // Step 3 - Convert entity -> DTO
+        ProfileResponse profile =
+                profileMapper.toResponse(studentProfile);
+
+        // Step 4 - Load cached repository evidence
+        RepositoryEvidenceResponse evidence =
+                loadRepositoryEvidence(project);
+
+        // Step 5 - Build engineering context
+        EngineeringContext context =
+                engineeringContextBuilder.build(evidence);
+
+        // Step 6 - AI engineering analysis
+        ProjectAnalysisResponse analysis =
+                engineeringAnalysisService.analyze(context);
+
+        // Step 7 - Career impact
+        enrichCareerImpact(
+                analysis,
+                profile
         );
 
+        // Step 8 - Persist analysis
+        saveAnalysis(
+                project,
+                analysis
+        );
+
+        // Step 9 - Return response
+        return analysis;
     }
+
+    private Project loadProject(
+            String projectId
+    ) {
+
+        return projectRepository.findById(projectId)
+                .orElseThrow(() ->
+                        new RuntimeException("Project not found."));
+    }
+
+    private StudentProfile loadStudentProfile(
+            String email
+    ) {
+
+        return studentProfileRepository.findByEmail(email)
+                .orElseThrow(() ->
+                        new RuntimeException("Student profile not found."));
+    }
+
+    private RepositoryEvidenceResponse loadRepositoryEvidence(
+            Project project
+    ) {
+
+         return repositoryCacheService.getRepositoryEvidence(
+            project.getGithubUrl(),
+            false
+    );
+
+    }
+
+    private void enrichCareerImpact(
+        ProjectAnalysisResponse analysis,
+        ProfileResponse profile
+) {
+
+    analysis.setCareer(
+
+            careerImpactService.evaluate(
+
+                    analysis.getEngineering(),
+
+                    profile,
+
+                    AnalysisPurpose.INTERNSHIP
+
+            )
+
+    );
+
+}
+
+private void saveAnalysis(
+        Project project,
+        ProjectAnalysisResponse analysis
+) {
+
+    projectAnalysisMapper.updateProject(
+            project,
+            analysis
+    );
+
+    projectRepository.save(
+            project
+    );
+
+}
 
 }

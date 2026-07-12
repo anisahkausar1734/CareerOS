@@ -7,10 +7,16 @@ import com.careeros.careeros_backend.dto.github.evidence.RepositoryDocumentation
 import com.careeros.careeros_backend.dto.github.evidence.RepositoryHealth;
 import com.careeros.careeros_backend.dto.github.evidence.RepositoryIdentity;
 import com.careeros.careeros_backend.dto.github.evidence.RepositoryStructure;
+import com.careeros.careeros_backend.dto.github.intelligence.RepositoryIntelligence;
+import com.careeros.careeros_backend.dto.github.intelligence.capabilities.EngineeringCapability;
+import com.careeros.careeros_backend.dto.github.intelligence.facts.RepositoryFact;
+import com.careeros.careeros_backend.dto.github.intelligence.signals.EngineeringSignal;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.List;
+
 
 @Data
 @Builder
@@ -53,5 +59,21 @@ public class RepositoryEvidenceResponse {
      * (This is what Gemini will analyze)
      */
     private EngineeringEvidence engineeringEvidence;
+
+    /*
+ * Repository Intelligence
+ * Generated from repository facts
+ * before AI analysis.
+ */
+private RepositoryIntelligence intelligence;
+
+/*
+ * Flat access for downstream services
+ */
+private List<RepositoryFact> facts;
+
+private List<EngineeringSignal> signals;
+
+private List<EngineeringCapability> capabilities;
 
 }
