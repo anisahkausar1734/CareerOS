@@ -17,23 +17,23 @@ import java.util.List;
 @AllArgsConstructor
 @Document(collection = "projects")
 public class Project {
+@Id
 
-    @Id
-    private String id;
+private String id;
 
-    private String email;
+private String email;
 
-    private String projectName;
+private String projectName;
 
-    private String description;
+private String description;
 
-    private List<String> techStack;
+private List<String> techStack;
 
-    private String githubUrl;
+private String githubUrl;
 
-    private String liveUrl;
+private String liveUrl;
 
-    private ProjectEngineeringAnalysis engineeringAnalysis;
+private ProjectEngineeringAnalysis engineeringAnalysis;
 
 private ProjectCareerImpact careerImpact;
 
@@ -41,11 +41,14 @@ private RepositoryFingerprint repositoryFingerprint;
 
 private LocalDateTime analyzedAt;
 
-private String analysisVersion;
+private Integer analysisVersion;
 
 private Integer repositoryQualityScore;
 
-    private LocalDateTime createdAt;
+private LocalDateTime createdAt;
 
-    private LocalDateTime updatedAt;
+private String analysisStatus;
+
+private LocalDateTime updatedAt;
+
 }

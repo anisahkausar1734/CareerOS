@@ -18,6 +18,13 @@ public class ProjectController {
 
     private final ProjectService projectService;
 
+    @PostMapping("/create-and-analyze")
+public ProjectAnalysisResponse createAndAnalyze(
+        @RequestBody CreateProjectRequest request
+) {
+    return projectService.createAndAnalyze(request);
+}
+
     @PostMapping
     public ProjectResponse createProject(
             @RequestBody CreateProjectRequest request
@@ -32,6 +39,13 @@ public class ProjectController {
         return projectService.analyzeProject(projectId);
     }
 
+    @PostMapping("/{projectId}/reanalyze")
+public ProjectAnalysisResponse reAnalyzeProject(
+        @PathVariable String projectId
+) {
+    return projectService.reAnalyzeProject(projectId);
+}
+
     @GetMapping("/intelligence/{email}")
     public ProjectIntelligenceResponse getProjectIntelligence(
             @PathVariable String email
@@ -39,12 +53,19 @@ public class ProjectController {
         return projectService.getProjectIntelligence(email);
     }
 
-    @GetMapping("/{email}")
+    @GetMapping("/user/{email}")
     public List<ProjectResponse> getProjects(
             @PathVariable String email
     ) {
         return projectService.getProjects(email);
     }
+
+    @GetMapping("/report/{projectId}")
+public ProjectResponse getProjectById(
+        @PathVariable String projectId
+) {
+    return projectService.getProjectById(projectId);
+}
 
     @DeleteMapping("/{projectId}")
     public void deleteProject(

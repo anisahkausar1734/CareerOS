@@ -16,19 +16,27 @@ public class EngineeringSignalBuilderImpl
 
     private final List<SignalRule> rules;
 
-    @Override
-    public List<EngineeringSignal> build(
-            List<RepositoryFact> facts
-    ) {
+  @Override
+public List<EngineeringSignal> build(
+        List<RepositoryFact> facts
+) {
 
-        return rules.stream()
+    List<EngineeringSignal> signals =
 
-                .map(rule -> rule.evaluate(facts))
+            rules.stream()
 
-                .filter(Objects::nonNull)
+                    .map(rule -> rule.evaluate(facts))
 
-                .toList();
+                    .filter(Objects::nonNull)
 
-    }
+                    .toList();
+
+    System.out.println("\n========== ENGINEERING SIGNALS ==========");
+
+    signals.forEach(System.out::println);
+
+    return signals;
 
 }
+
+        }

@@ -4,7 +4,6 @@ import com.careeros.careeros_backend.dto.CreateProjectRequest;
 import com.careeros.careeros_backend.dto.projectanalysis.ProjectAnalysisResponse;
 import com.careeros.careeros_backend.dto.ProjectIntelligenceResponse;
 import com.careeros.careeros_backend.dto.ProjectResponse;
-import com.careeros.careeros_backend.dto.ProjectIntelligenceResponse;
 
 import java.util.List;
 
@@ -13,6 +12,10 @@ public interface ProjectService {
     ProjectResponse createProject(
             CreateProjectRequest request
     );
+
+    ProjectAnalysisResponse createAndAnalyze(
+        CreateProjectRequest request
+);
 
     List<ProjectResponse> getProjects(
             String email
@@ -25,9 +28,15 @@ ProjectAnalysisResponse analyzeProject(
         String projectId
 );
 
+ProjectAnalysisResponse reAnalyzeProject(
+        String projectId
+);
+
 ProjectIntelligenceResponse
 getProjectIntelligence(
         String email
 );
+
+ProjectResponse getProjectById(String projectId);
 
 }

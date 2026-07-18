@@ -60,51 +60,56 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/api/auth/**",
-                                "/api/users/**",
-                                "/api/career/**",
-                                "/api/projects/**",
-                                "/api/internship/**",
-                                "/api/gemini/**",
-                                "/api/roadmap/**",
-                                "/api/interview/**",
-                                "/api/jobs/**",
-                                "/api/resources/**",
-                                "/api/progress/**",
-                                "/api/admin/**",
-                                "/api/job-match/**",
-                                "/api/applications/**",
-                                "/api/application-insights/**",
-                                "/api/copilot/**",
-                                "/api/interview/**",
-                                "/api/student-profile/**",
-                                "/api/skill-gap/**",
-                                "/api/ats/**",
-                                "/api/resumes/**",
-                                "/api/refine/**",
-                                "/api/resume-center/**",
-                                "/api/resume-gap/**",
-                                "/api/resume-refinement/**",
-                                "/api/internship-analysis/**",
-                                "/api/internships/**",
-                                "/api/internship-match/**", 
-                                "/api/github/**",
-                                "/api/job-readiness/**",
-                                "/api/internship/**",
-                                "/api/career-analysis/**",
-                                "/api/analyze/**",
-                                "/api/resume-analysis/**",
-                                "/api/youtube/**",
-                                "/api/intelligence/**",
-                                "/api/projects/intelligence/**",
-                                "/api/career-insight/**",
-                                "/api/projects/blueprint/**",
-                                "/api/resources/search/**"
-   
+                       .requestMatchers(
+        "/api/auth/**",
+        "/api/users/**",
+        "/api/student-profile/**",
 
-                        )
-                        .permitAll()
+        "/api/projects/**",
+        "/api/github/**",
+
+        "/api/career/**",
+        "/api/career-analysis/**",
+        "/api/career-insight/**",
+
+        "/api/skill-gap/**",
+        "/api/roadmap/**",
+
+        "/api/jobs/**",
+        "/api/job-match/**",
+
+        "/api/internship/**",
+        "/api/internships/**",
+        "/api/internship-analysis/**",
+        "/api/internship-match/**",
+
+        "/api/resumes/**",
+        "/api/resume-analysis/**",
+        "/api/resume-center/**",
+        "/api/resume-gap/**",
+        "/api/resume-refinement/**",
+        "/api/refine/**",
+        "/api/ats/**",
+
+        "/api/interview/**",
+
+        "/api/resources/**",
+        "/api/resources/search/**",
+
+        "/api/progress/**",
+        "/api/application-insights/**",
+        "/api/applications/**",
+
+        "/api/copilot/**",
+        "/api/youtube/**",
+        "/api/intelligence/**",
+
+        "/api/admin/**",
+
+        "/api/analyze/**",
+        "/api/gemini/**"
+)
+.permitAll()
                         .anyRequest()
                         .authenticated()
                 )

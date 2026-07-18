@@ -28,6 +28,11 @@ public class ImportantFileCollectorImpl
             List<Map<String, Object>> repositoryTree
     ) {
 
+        System.out.println("\n========== EVIDENCE CATEGORIES ==========");
+System.out.println(engineeringEvidenceProperties.getCategories().keySet());
+System.out.println("Category Count = " +
+        engineeringEvidenceProperties.getCategories().size());
+
         Map<String, String> importantFiles =
                 new LinkedHashMap<>();
 
@@ -38,6 +43,8 @@ public class ImportantFileCollectorImpl
             }
 
             String path = (String) node.get("path");
+
+            System.out.println(path);
 
             if (!isImportant(path)) {
                 continue;
@@ -73,9 +80,12 @@ public class ImportantFileCollectorImpl
 
     }
 
+    
+
     private boolean isImportant(
             String path
     ) {
+System.out.println("Checking : " + path);
 
         String lowerPath =
                 path.toLowerCase(Locale.ROOT);
@@ -122,6 +132,10 @@ public class ImportantFileCollectorImpl
                         .anyMatch(fileName::equals);
 
                 if (match) {
+
+
+                    System.out.println("Matched : " + path);
+
                     return true;
                 }
 
@@ -140,6 +154,9 @@ public class ImportantFileCollectorImpl
                         .anyMatch(lowerPath::contains);
 
                 if (match) {
+
+                    System.out.println("Matched : " + path);
+
                     return true;
                 }
 
@@ -165,6 +182,9 @@ public class ImportantFileCollectorImpl
                             .anyMatch(extension::equals);
 
                     if (match) {
+
+                        System.out.println("Matched : " + path);
+
                         return true;
                     }
 

@@ -14,6 +14,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class RepositoryCollectorServiceImpl
         implements RepositoryCollectorService {
+                
 
     private final GithubGraphQLService
             graphQLService;
@@ -29,6 +30,8 @@ public class RepositoryCollectorServiceImpl
     public RepositoryRawEvidence collect(
             String githubUrl
     ) {
+
+         try {
 
         String cleaned =
                 githubUrl
@@ -54,7 +57,7 @@ public class RepositoryCollectorServiceImpl
         /*
          * GraphQL
          */
-
+System.out.println("A");
         Map<String, Object> graphQL =
                 graphQLService
                         .getRepositoryOverview(
@@ -65,15 +68,16 @@ public class RepositoryCollectorServiceImpl
         /*
          * Repository
          */
-
+System.out.println("B");
         Map<String, Object> data =
                 (Map<String, Object>)
                         graphQL.get("data");
-
+                        
+                        System.out.println("C");
         Map<String, Object> repo =
                 (Map<String, Object>)
                         data.get("repository");
-
+System.out.println("D");
         Map<String, Object> defaultBranchRef =
                 (Map<String, Object>)
                         repo.get("defaultBranchRef");
@@ -160,6 +164,17 @@ public class RepositoryCollectorServiceImpl
 
                 .build();
 
+       }
+
+    catch (Exception e) {
+
+        System.out.println("==========COLLECTOR ERROR ==========");
+        e.printStackTrace();
+
+        throw e;
+
     }
+
+}
 
 }

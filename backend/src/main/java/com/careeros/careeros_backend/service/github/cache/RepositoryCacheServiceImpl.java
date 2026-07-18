@@ -37,13 +37,18 @@ private final RepositoryIntelligenceEngine intelligenceEngine;
     public RepositoryEvidenceResponse getRepositoryEvidence(
             String githubUrl,
             boolean forceRefresh
-    ) {
+    )
+    
+    {
+System.out.println(">>>>>>>>>> ENTERED CACHE SERVICE <<<<<<<<<<");
 
+
+System.out.println("1");
         RepositoryFingerprint latestFingerprint =
                 fingerprintService.getFingerprint(
                         githubUrl
                 );
-
+System.out.println("2");
         RepositoryEvidenceCache cache =
                 cacheRepository.findByRepositoryUrl(
                         githubUrl
@@ -56,28 +61,40 @@ private final RepositoryIntelligenceEngine intelligenceEngine;
                         cache.getFingerprint().getLatestCommitSha()
                 )) {
 
+
             return cache.getEvidence();
 
         }
-
+System.out.println("3");
         RepositoryRawEvidence rawEvidence =
                 collectorService.collect(
                         githubUrl
                 );
-
+System.out.println("4");
         RepositorySnapshot snapshot =
         snapshotBuilder.build(
                 rawEvidence
         );
+
+
+System.out.println("Snapshot returned successfully");
+
+System.out.println(snapshot);
+
+System.out.println(">>>>>>>>>> SNAPSHOT CREATED <<<<<<<<<<");
+
 
 RepositoryIntelligence intelligence =
         intelligenceEngine.build(
                 snapshot
         );
 
+        System.out.println(">>>>>>>>>> INTELLIGENCE CREATED <<<<<<<<<<");
+
 RepositoryEvidenceResponse evidence =
         evidenceBuilder.build(
                 rawEvidence,
+                snapshot,
                 intelligence
         );
 

@@ -43,6 +43,7 @@ public class RepositoryEvidenceSerializerImpl
 
         try {
 
+            
             return objectMapper.readValue(
                     json,
                     RepositoryEvidenceResponse.class

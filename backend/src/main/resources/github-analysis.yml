@@ -1,56 +1,155 @@
 github:
 
-  important-files:
+  evidence:
 
-    exact-names:
-      - Dockerfile
-      - LICENSE
-      - README
-      - README.md
-      - README.txt
-      - CONTRIBUTING.md
-      - CHANGELOG.md
-      - CODE_OF_CONDUCT.md
-      - SECURITY.md
-      - Procfile
-      - Makefile
-      - Jenkinsfile
+    categories:
 
-    contains:
-      - workflow
-      - github/workflows
-      - docker
-      - compose
-      - swagger
-      - openapi
-      - application
-      - bootstrap
-      - settings
-      - config
+      documentation:
 
-    extensions:
-      - yml
-      - yaml
-      - json
-      - xml
-      - toml
-      - gradle
-      - kts
-      - properties
-      - env
-      - ini
-      - conf
-      - txt
-      - md
+        exact-names:
+          - README
+          - README.md
+          - README.txt
+          - LICENSE
+          - LICENSE.md
+          - CONTRIBUTING.md
+          - CHANGELOG.md
+          - CODE_OF_CONDUCT.md
+          - SECURITY.md
 
-    ignored-directories:
-      - node_modules
-      - target
-      - build
-      - dist
-      - .git
-      - vendor
-      - coverage
-      - out
-      - bin
-      - obj
+      build:
+
+        exact-names:
+          - pom.xml
+          - build.gradle
+          - build.gradle.kts
+          - settings.gradle
+          - settings.gradle.kts
+          - MavenWrapperDownloader.java
+          - mvnw
+          - mvnw.cmd
+          - gradlew
+          - gradlew.bat
+          - Makefile
+          - Jenkinsfile
+
+      dependency:
+
+        exact-names:
+          - package.json
+          - package-lock.json
+          - yarn.lock
+          - pnpm-lock.yaml
+          - requirements.txt
+          - Pipfile
+          - Pipfile.lock
+          - poetry.lock
+          - Cargo.toml
+          - Cargo.lock
+          - go.mod
+          - go.sum
+          - composer.json
+          - composer.lock
+          - Gemfile
+          - Gemfile.lock
+          - pubspec.yaml
+          - pubspec.lock
+
+      deployment:
+
+        exact-names:
+          - Dockerfile
+          - docker-compose.yml
+          - docker-compose.yaml
+          - Procfile
+
+        contains:
+          - kubernetes
+          - k8s
+          - helm
+
+      workflow:
+
+        contains:
+          - .github/workflows
+          - github/workflows
+
+      configuration:
+
+        exact-names:
+          - application.yml
+          - application.yaml
+          - application.properties
+          - bootstrap.yml
+          - bootstrap.yaml
+          - bootstrap.properties
+
+        extensions:
+          - yml
+          - yaml
+          - properties
+          - conf
+          - ini
+
+      api:
+
+        contains:
+          - swagger
+          - openapi
+          - api-docs
+
+      environment:
+
+        exact-names:
+          - .env
+          - .env.local
+          - .env.production
+          - .env.development
+
+        extensions:
+          - env
+
+      testing:
+
+        contains:
+          - test
+          - tests
+          - junit
+          - mockito
+
+      security:
+
+        contains:
+          - security
+          - auth
+          - jwt
+          - oauth
+
+      monitoring:
+
+        contains:
+          - prometheus
+          - grafana
+          - actuator
+          - micrometer
+
+      infrastructure:
+
+        contains:
+          - terraform
+          - ansible
+          - cloudformation
+
+      common:
+
+        ignored-directories:
+          - node_modules
+          - target
+          - build
+          - dist
+          - .git
+          - vendor
+          - coverage
+          - out
+          - obj
+          - bin

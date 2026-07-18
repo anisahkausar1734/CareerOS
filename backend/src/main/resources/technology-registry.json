@@ -1,0 +1,35 @@
+[
+  {
+    "groupId": "org.springframework.boot",
+    "artifactId": "spring-boot-starter-web",
+    "technology": {
+      "id": "spring-web",
+      "name": "Spring Web",
+      "category": "FRAMEWORK",
+      "ecosystem": "MAVEN",
+      "confidence": 100
+    }
+  },
+  {
+    "groupId": "org.springframework.boot",
+    "artifactId": "spring-boot-starter-security",
+    "technology": {
+      "id": "spring-security",
+      "name": "Spring Security",
+      "category": "SECURITY",
+      "ecosystem": "MAVEN",
+      "confidence": 100
+    }
+  },
+  {
+    "groupId": "org.postgresql",
+    "artifactId": "postgresql",
+    "technology": {
+      "id": "postgresql",
+      "name": "PostgreSQL",
+      "category": "DATABASE",
+      "ecosystem": "MAVEN",
+      "confidence": 100
+    }
+  }
+]

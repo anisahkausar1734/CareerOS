@@ -105,6 +105,8 @@ public class ProjectAnalysisOrchestratorImpl
             Project project
     ) {
 
+System.out.println(">>>>>>>>>> RepositoryCacheService CALLED <<<<<<<<<<");
+
          return repositoryCacheService.getRepositoryEvidence(
             project.getGithubUrl(),
             false

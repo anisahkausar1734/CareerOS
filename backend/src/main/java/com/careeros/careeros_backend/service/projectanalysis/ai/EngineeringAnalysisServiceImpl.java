@@ -25,6 +25,27 @@ public class EngineeringAnalysisServiceImpl
             EngineeringContext context
     ) {
 
+
+        System.out.println("\n========== ENGINEERING CONTEXT ==========");
+
+System.out.println("Build Files: " + context.getBuildFiles());
+
+System.out.println("Dependency Files: " + context.getDependencyFiles());
+
+System.out.println("Facts: " + context.getFacts());
+
+System.out.println("Signals: " + context.getSignals());
+
+System.out.println("Capabilities: " + context.getCapabilities());
+
+System.out.println("Has Docker: " + context.getHasDocker());
+
+System.out.println("Has GitHub Actions: " + context.getHasGithubActions());
+
+System.out.println("README Length: " +
+        (context.getReadmeSummary() == null
+                ? 0
+                : context.getReadmeSummary().length()));
         String prompt =
                 promptBuilder.buildPrompt(
                         context

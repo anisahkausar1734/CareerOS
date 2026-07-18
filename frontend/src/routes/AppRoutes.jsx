@@ -6,7 +6,7 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import ATSPage from "../pages/ATSPage";
 import InternshipAnalyzerPage from "../pages/InternshipAnalyzerPage";
-import ProjectsPage from "../pages/ProjectsPage";
+import ProjectIntelligencePage from "../pages/ProjectIntelligence/ProjectIntelligencePage";
 import ResumeAnalyzer from "../pages/ResumeAnalyzer";
 import ResumeAnalysisPage from "../pages/ResumeAnalysisPage";
 import AICareerMentor from "../pages/AICareerMentor";
@@ -30,6 +30,7 @@ import CareerIntelligencePage from "../pages/CareerIntelligencePage";
 import ProfileEditPage from "../pages/ProfileEditPage";
 import DashboardPage from "../pages/DashboardPage";
 import ProfileSetupPage from "../pages/ProfileSetupPage";
+import ProjectReportPage from "../pages/ProjectIntelligence/ProjectReportPage";
 
 
 
@@ -48,7 +49,11 @@ function AppRoutes() {
           element={<RegisterPage />}
         />
 
-       
+         <Route
+        path="/project-intelligence/:projectId"
+        element={<ProjectReportPage />}
+    />
+
 
 
 
@@ -166,9 +171,9 @@ function AppRoutes() {
   element={<InternshipAnalyzerPage />}
 />
 
-       <Route
-  path="/projects"
-  element={<ProjectsPage />}
+     <Route
+    path="/project-intelligence"
+    element={<ProjectIntelligencePage />}
 />
 
         <Route

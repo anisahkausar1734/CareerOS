@@ -10,6 +10,48 @@ public final class EngineeringJsonSchema {
         return """
 Return ONLY valid JSON.
 
+IMPORTANT RULES
+
+1. Every field ending with:
+- Score
+- Value
+- Complexity
+- Confidence
+- Readiness
+
+MUST be an INTEGER between 0 and 100.
+
+Never return text for these fields.
+
+2. Explanations belong ONLY in fields ending with:
+- Review
+- Verdict
+- Summary
+- Recommendation
+
+3. Arrays must always be arrays of strings.
+
+4. Never change field names.
+
+5. Never omit fields.
+
+6. Never add new fields.
+
+7. Never return null.
+
+8. If evidence is insufficient, still return an integer score.
+
+Example:
+
+Correct:
+"businessValue": 65
+
+Wrong:
+"businessValue": "Good educational value"
+
+Wrong:
+"businessValue": "Primarily educational..."
+
 {
   "summary": {
 
@@ -33,51 +75,59 @@ Return ONLY valid JSON.
 
   "engineering": {
 
-    "engineeringScore": 0,
+    
 
     "engineeringLevel": "",
 
     "engineeringVerdict": "",
 
-    "confidence": 0,
-
-    "architectureScore": 0,
-
     "architectureStyle": "",
 
     "architectureReview": "",
 
-    "codeQuality": 0,
-
-    "repositoryOrganization": 0,
-
-    "maintainability": 0,
-
     "engineeringReview": "",
-
-    "documentationQuality": 0,
 
     "documentationReview": "",
 
-    "dependencyManagement": 0,
+    "businessValue": "<INTEGER 0-100>",
 
-    "buildQuality": 0,
+    "engineeringScore": "<INTEGER 0-100>",
 
-    "scalability": 0,
+"confidence": "<INTEGER 0-100>",
 
-    "securityScore": 0,
+"architectureScore": "<INTEGER 0-100>",
 
-    "testingQuality": 0,
+"codeQuality": "<INTEGER 0-100>",
 
-    "deploymentReadiness": 0,
+"repositoryOrganization": "<INTEGER 0-100>",
 
-    "productionReadiness": 0,
+"maintainability": "<INTEGER 0-100>",
 
-    "innovationScore": 0,
+"documentationQuality": "<INTEGER 0-100>",
 
-    "businessValue": 0,
+"dependencyManagement": "<INTEGER 0-100>",
 
-    "technicalComplexity": 0,
+"buildQuality": "<INTEGER 0-100>",
+
+"scalability": "<INTEGER 0-100>",
+
+"securityScore": "<INTEGER 0-100>",
+
+"testingQuality": "<INTEGER 0-100>",
+
+"deploymentReadiness": "<INTEGER 0-100>",
+
+"productionReadiness": "<INTEGER 0-100>",
+
+"innovationScore": "<INTEGER 0-100>",
+
+"businessValue": "<INTEGER 0-100>",
+
+"technicalComplexity": "<INTEGER 0-100>",
+
+"maturityScore": "<INTEGER 0-100>",
+
+"evidenceCoverageScore": "<INTEGER 0-100>",
 
     "deploymentReview": "",
 
@@ -101,15 +151,11 @@ Return ONLY valid JSON.
 
     "maturityStage": "",
 
-    "maturityScore": 0,
-
     "hiringRecommendation": "",
 
     "portfolioRecommendation": "",
 
     "evidenceCoverage": "",
-
-    "evidenceCoverageScore": 0
 
   }
 

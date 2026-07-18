@@ -12,6 +12,21 @@ import lombok.NoArgsConstructor;
 public class ProjectAnalysisResponse {
 
     /**
+ * Project identifier.
+ */
+private String projectId;
+
+/**
+ * Project name.
+ */
+private String projectName;
+
+/**
+ * GitHub repository URL.
+ */
+private String githubUrl;
+
+    /**
      * High-level project overview.
      */
     private ProjectSummary summary;

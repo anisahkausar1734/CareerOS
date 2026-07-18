@@ -29,6 +29,10 @@ public class GithubGraphQLServiceImpl
 
             name
 
+            owner {
+              login
+            }
+
             description
 
             homepageUrl
@@ -71,30 +75,32 @@ public class GithubGraphQLServiceImpl
               totalCount
             }
 
-            issues(states:OPEN) {
+            issues(states: OPEN) {
               totalCount
             }
 
-            releases(first:20) {
+            releases(first: 20) {
               totalCount
             }
 
             refs(
-              refPrefix:"refs/heads/",
-              first:100
+              refPrefix: "refs/heads/",
+              first: 100
             ) {
               totalCount
             }
 
-            repositoryTopics(first:30) {
-              nodes {
-                topic {
-                  name
+            repositoryTopics(first: 30) {
+              edges {
+                node {
+                  topic {
+                    name
+                  }
                 }
               }
             }
 
-            languages(first:20) {
+            languages(first: 20) {
               edges {
                 size
                 node {

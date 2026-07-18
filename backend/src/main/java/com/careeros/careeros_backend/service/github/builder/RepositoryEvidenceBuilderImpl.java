@@ -4,11 +4,11 @@ import com.careeros.careeros_backend.dto.github.RepositoryEvidenceResponse;
 import com.careeros.careeros_backend.dto.github.RepositoryRawEvidence;
 import com.careeros.careeros_backend.dto.github.evidence.*;
 import com.careeros.careeros_backend.dto.github.intelligence.RepositoryIntelligence;
+import com.careeros.careeros_backend.dto.github.snapshot.RepositorySnapshot;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -19,9 +19,12 @@ public class RepositoryEvidenceBuilderImpl
 
     @Override
 @SuppressWarnings("unchecked")
+
 public RepositoryEvidenceResponse build(
 
     RepositoryRawEvidence raw,
+
+    RepositorySnapshot snapshot,
 
     RepositoryIntelligence intelligence
 
@@ -58,9 +61,10 @@ RepositoryHealth health =
 
 RepositoryStructure structure =
         buildStructure(
-                repositoryTree,
+                snapshot,
                 importantFiles
         );
+
 
 RepositoryDocumentation documentation =
         buildDocumentation(
@@ -190,32 +194,53 @@ return RepositoryEvidenceResponse.builder()
      * Structure
      * ====================================================
      */
+private RepositoryStructure buildStructure(
 
-    private RepositoryStructure buildStructure(
+        RepositorySnapshot snapshot,
 
-            List<Map<String, Object>> repositoryTree,
+        Map<String, String> importantFiles
 
-            Map<String, String> importantFiles
+) {
 
-    ) {
+    return RepositoryStructure.builder()
 
-        return RepositoryStructure
+            .totalFiles(
+                    snapshot.getTotalFiles()
+            )
 
-                .builder()
+            .totalDirectories(
+                    snapshot.getTotalDirectories()
+            )
 
-                .totalFiles(
-                        repositoryTree.size()
-                )
+            .importantFiles(
+                    new ArrayList<>(
+                            importantFiles.keySet()
+                    )
+            )
 
-                .importantFiles(
-                        new ArrayList<>(
-                                importantFiles.keySet()
-                        )
-                )
+            .configurationFiles(
+                    snapshot.getConfigurationFiles()
+            )
 
-                .build();
+            .workflowFiles(
+                    snapshot.getWorkflowFiles()
+            )
 
-    }
+            .deploymentFiles(
+                    snapshot.getDeploymentFiles()
+            )
+
+            .buildFiles(
+                    snapshot.getBuildFiles()
+            )
+
+            .dependencyFiles(
+                    snapshot.getDependencyFiles()
+            )
+
+            .build();
+
+}
 
     /*
      * ====================================================
@@ -392,12 +417,7 @@ return RepositoryEvidenceResponse.builder()
                 .build();
 
     }
-
-    /*
-     * ====================================================
-     * Helper
-     * ====================================================
-     */
+    /*  Helper  */
 
     @SuppressWarnings("unchecked")
     private String extractOwner(

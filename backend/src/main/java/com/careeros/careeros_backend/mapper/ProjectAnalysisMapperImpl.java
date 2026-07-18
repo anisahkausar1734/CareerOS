@@ -10,49 +10,49 @@ import java.time.LocalDateTime;
 public class ProjectAnalysisMapperImpl
         implements ProjectAnalysisMapper {
 
-    @Override
-    public void updateProject(
-            Project project,
-            ProjectAnalysisResponse analysis
-    ) {
+  @Override
+public void updateProject(
+        Project project,
+        ProjectAnalysisResponse analysis
+) {
 
-        project.setEngineeringAnalysis(
-                analysis.getEngineering()
+    // Save AI analysis
+    project.setEngineeringAnalysis(
+            analysis.getEngineering()
+    );
+
+    project.setCareerImpact(
+            analysis.getCareer()
+    );
+
+    // Analysis metadata
+    project.setAnalysisStatus("COMPLETED");
+
+    project.setAnalysisVersion(
+            project.getAnalysisVersion() == null
+                    ? 1
+                    : project.getAnalysisVersion() + 1
+    );
+
+    if (analysis.getMetadata() != null) {
+
+        project.setAnalyzedAt(
+                analysis.getMetadata().getAnalyzedAt() != null
+                        ? analysis.getMetadata().getAnalyzedAt()
+                        : LocalDateTime.now()
         );
 
-        project.setCareerImpact(
-                analysis.getCareer()
-        );
+    } else {
 
-        if (analysis.getMetadata() != null) {
-
-            project.setRepositoryFingerprint(
-                    null
-            );
-
-            project.setAnalysisVersion(
-                    analysis.getMetadata()
-                            .getPromptVersion()
-            );
-
-            project.setAnalyzedAt(
-                    analysis.getMetadata()
-                            .getAnalyzedAt()
-            );
-
-        }
-        else {
-
-            project.setAnalyzedAt(
-                    LocalDateTime.now()
-            );
-
-        }
-
-        project.setUpdatedAt(
+        project.setAnalyzedAt(
                 LocalDateTime.now()
         );
 
     }
+
+    project.setUpdatedAt(
+            LocalDateTime.now()
+    );
+}
 
 }

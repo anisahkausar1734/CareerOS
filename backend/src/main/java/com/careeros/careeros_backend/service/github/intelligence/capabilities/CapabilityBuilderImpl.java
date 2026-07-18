@@ -16,21 +16,29 @@ public class CapabilityBuilderImpl
 
     private final List<CapabilityRule> rules;
 
-    @Override
-    public List<EngineeringCapability> build(
-            List<EngineeringSignal> signals
-    ) {
+  @Override
+public List<EngineeringCapability> build(
+        List<EngineeringSignal> signals
+) {
 
-        return rules.stream()
+    List<EngineeringCapability> capabilities =
 
-                .map(rule ->
-                        rule.evaluate(signals)
-                )
+            rules.stream()
 
-                .filter(Objects::nonNull)
+                    .map(rule ->
+                            rule.evaluate(signals)
+                    )
 
-                .toList();
+                    .filter(Objects::nonNull)
 
-    }
+                    .toList();
+
+    System.out.println("\n========== ENGINEERING CAPABILITIES ==========");
+
+    capabilities.forEach(System.out::println);
+
+    return capabilities;
+
+}
 
 }
