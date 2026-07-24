@@ -79,7 +79,25 @@ export default function ProjectReportPage() {
     
             <Sidebar />
 
-    <main className="ml-[235px] flex-1 min-w-0 overflow-x-hidden p-10">
+    <main
+    className="
+        ml-[235px]
+        flex-1
+        min-w-0
+        overflow-x-hidden
+        bg-[#F7F8FC]
+    "
+>
+    <div
+        className="
+            mx-auto
+            w-full
+            max-w-[1700px]
+            space-y-10
+            px-10
+            py-8
+        "
+    >
 
                   <ReportHero project={project} />
                   <ScoreOverview project={project} />
@@ -89,13 +107,7 @@ export default function ProjectReportPage() {
                   <CareerImpactSection project={project} />
                   <FinalRecommendation project={project} />
 
-                <h1 className="text-4xl font-bold">
-                    {project.projectName}
-                </h1>
-
-                <p className="mt-3 text-slate-500">
-                    {project.description}
-                </p>
+                </div>
 
             </main>
 

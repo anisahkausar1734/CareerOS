@@ -58,18 +58,17 @@ export default function CareerImpactSection({ project }) {
 
             <h2 className="text-2xl font-bold">
 
-                Career Impact
+                Career Intelligence
 
             </h2>
 
             <p className="mt-2 text-slate-500">
 
-                AI evaluation of how this project improves your
-                software engineering career.
+                Understand how this project strengthens your resume, interview readiness, and career opportunities.
 
             </p>
 
-            <div className="mt-8 space-y-7">
+           <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
 
                 {metrics.map((metric) => {
 
@@ -77,75 +76,98 @@ export default function CareerImpactSection({ project }) {
 
                     const value = project[metric.key] ?? 0;
 
-                    return (
+                   return (
 
-                        <div key={metric.key}>
+    <div
+        key={metric.key}
+        className="
+            rounded-2xl
+            border
+            border-slate-200
+            bg-slate-50
+            p-5
+            transition
+            hover:border-violet-300
+            hover:shadow-md
+        "
+    >
 
-                            <div className="flex justify-between">
+        <div className="flex items-center justify-between">
 
-                                <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3">
 
-                                    <div className="rounded-xl bg-violet-100 p-3">
+                <div className="rounded-xl bg-violet-100 p-3">
 
-                                        <Icon className="h-5 w-5 text-violet-700" />
+                    <Icon className="h-5 w-5 text-violet-700" />
 
-                                    </div>
+                </div>
 
-                                    <span className="font-medium">
+                <div>
 
-                                        {metric.title}
+                    <h4 className="font-semibold text-slate-900">
 
-                                    </span>
+                        {metric.title}
 
-                                </div>
+                    </h4>
 
-                                <span className="font-bold">
+                    <p className="mt-1 text-sm text-slate-500">
 
-                                    {value}/100
+                        {value >= 90
+                            ? "Excellent"
+                            : value >= 80
+                            ? "Very Good"
+                            : value >= 70
+                            ? "Good"
+                            : value >= 60
+                            ? "Average"
+                            : "Needs Improvement"}
 
-                                </span>
+                    </p>
 
-                            </div>
+                </div>
 
-                            <div className="mt-3 h-3 rounded-full bg-slate-200">
+            </div>
 
-                                <div
-                                    className="
-                                        h-3
-                                        rounded-full
-                                        bg-gradient-to-r
-                                        from-emerald-500
-                                        to-green-600
-                                    "
-                                    style={{
-                                        width: `${value}%`,
-                                    }}
-                                />
+            <span
+                className="
+                    rounded-xl
+                    bg-violet-100
+                    px-3
+                    py-1
+                    text-sm
+                    font-bold
+                    text-violet-700
+                "
+            >
+                {value}/100
+            </span>
 
-                            </div>
+        </div>
 
-                        </div>
+    </div>
 
-                    );
+);
 
                 })}
 
             </div>
 
-            <div
-                className="
-                    mt-10
-                    rounded-2xl
-                    bg-violet-50
-                    p-6
-                "
-            >
+           <div
+    className="
+        mt-10
+        rounded-2xl
+        border
+        border-violet-200
+        bg-violet-50
+        p-6
+    "
+>
 
-                <h3 className="text-xl font-bold">
+               <h3 className="text-xl font-bold text-slate-900">
 
-                    Overall Career Verdict
+    Career Intelligence Summary
 
-                </h3>
+</h3>
 
                 <p
                     className="
@@ -154,6 +176,9 @@ export default function CareerImpactSection({ project }) {
                         text-slate-700
                     "
                 >
+                    <p className="mt-2 text-sm text-slate-500">
+    AI-generated summary of this project's impact on your software engineering career.
+</p>
 
                     {project.overallCareerVerdict}
 

@@ -2,8 +2,6 @@ package com.careeros.careeros_backend.service.github.evidence;
 
 import lombok.Builder;
 import lombok.Data;
-
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Data

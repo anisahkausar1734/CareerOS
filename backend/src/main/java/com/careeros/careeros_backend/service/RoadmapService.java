@@ -11,7 +11,6 @@ import com.careeros.careeros_backend.repository.RoadmapRepository;
 import com.careeros.careeros_backend.repository.StudentProfileRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import com.careeros.careeros_backend.dto.CareerInsightResponse;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -9,7 +9,6 @@ import com.careeros.careeros_backend.repository.ResumeRefinementRepository;
 import com.careeros.careeros_backend.repository.ResumeRepository;
 import java.util.List;
 
-import com.careeros.careeros_backend.dto.ResumeRefinementHistoryDTO;
 
 import lombok.RequiredArgsConstructor;
 

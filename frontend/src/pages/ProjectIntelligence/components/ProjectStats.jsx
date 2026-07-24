@@ -11,10 +11,31 @@ export default function ProjectStats({
 
 }) {
     
+  const totalProjects = projects?.length ?? 0;
+
+const resumeReadyProjects = projects?.filter(
+    (project) => (project.engineeringScore ?? project.projectScore ?? 0) >= 90
+).length ?? 0;
+
+const averageScore =
+    totalProjects > 0
+        ? Math.round(
+              projects.reduce(
+                  (sum, project) => sum + (project.engineeringScore ?? project.projectScore ?? 0),
+                  0
+              ) / totalProjects
+          )
+        : 0;
+
+const needsImprovementProjects = projects?.filter(
+    (project) => (project.engineeringScore ?? project.projectScore ?? 0) < 70
+).length ?? 0;
+
+
     const stats = [
         {
             title: "Total Projects",
-            value: "4",
+            value: totalProjects,
             subtitle: "Analyzed",
             icon: FolderGit2,
             bg: "bg-violet-100",
@@ -22,7 +43,7 @@ export default function ProjectStats({
         },
         {
             title: "Resume Ready",
-            value: "2",
+            value: resumeReadyProjects,
             subtitle: "Projects",
             icon: BadgeCheck,
             bg: "bg-emerald-100",
@@ -30,7 +51,7 @@ export default function ProjectStats({
         },
         {
             title: "Average Score",
-            value: "86",
+            value: averageScore,
             subtitle: "Out of 100",
             icon: TrendingUp,
             bg: "bg-blue-100",
@@ -38,7 +59,7 @@ export default function ProjectStats({
         },
         {
             title: "Needs Improvement",
-            value: "2",
+            value: needsImprovementProjects,
             subtitle: "Projects",
             icon: TriangleAlert,
             bg: "bg-orange-100",

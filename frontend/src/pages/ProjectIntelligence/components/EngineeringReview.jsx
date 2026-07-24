@@ -63,13 +63,13 @@ export default function EngineeringReview({ project }) {
 
                     <h2 className="text-2xl font-bold">
 
-                        AI Engineering Review
+                        Engineering Review
 
                     </h2>
 
                     <p className="text-slate-500">
 
-                        AI-generated engineering assessment of the repository.
+                        Detailed AI review of each engineering pillar based on your repository.
 
                     </p>
 
@@ -77,20 +77,40 @@ export default function EngineeringReview({ project }) {
 
             </div>
 
-            <div
-                className="
-                    mt-8
-                    rounded-2xl
-                    bg-violet-50
-                    p-7
-                    leading-8
-                    text-slate-700
-                "
-            >
+           <div
+    className="
+        mt-8
+        rounded-2xl
+        border
+        border-violet-200
+        bg-violet-50
+        p-7
+    "
+>
+
+    <h3 className="text-lg font-semibold text-slate-900">
+    Executive Summary
+</h3>
+
+<p className="mt-2 text-sm text-slate-500">
+    Overall engineering assessment generated from repository analysis.
+</p>
+
                 {project.engineeringReview}
             </div>
 
-            <div className="mt-10 space-y-8">
+
+            <div className="mt-10 mb-6">
+    <h3 className="text-xl font-semibold text-slate-900">
+        Detailed Engineering Reviews
+    </h3>
+
+    <p className="mt-1 text-sm text-slate-500">
+        Individual assessments for each engineering category.
+    </p>
+</div>
+
+            <div className="mt-10 grid gap-6 md:grid-cols-2">
 
                 {sections.map((section) => {
 
@@ -100,15 +120,19 @@ export default function EngineeringReview({ project }) {
 
                         <div
                             key={section.key}
-                            className="
-                                rounded-2xl
-                                border
-                                border-slate-100
-                                p-6
-                            "
-                        >
+                           className="
+    rounded-2xl
+    border
+    border-slate-200
+    bg-white
+    p-6
+    transition
+    hover:border-violet-300
+    hover:shadow-md
+"
+>
 
-                            <div className="flex items-center gap-3">
+                           <div className="flex items-center justify-between">
 
                                 <Icon
                                     className="
@@ -127,15 +151,34 @@ export default function EngineeringReview({ project }) {
                                     {section.title}
                                 </h3>
 
-                            </div>
+                                </div>
 
-                            <p
-                                className="
-                                    mt-4
-                                    leading-8
-                                    text-slate-600
-                                "
-                            >
+                                <span
+    className="
+        ml-auto
+        rounded-full
+        bg-violet-100
+        px-3
+        py-1
+        text-xs
+        font-semibold
+        text-violet-700
+    "
+>
+    AI Reviewed
+</span>
+
+                           
+
+                           <p
+    className="
+        mt-5
+        text-sm
+        leading-7
+        text-slate-600
+    "
+>
+
                                 {project[section.key]}
                             </p>
 

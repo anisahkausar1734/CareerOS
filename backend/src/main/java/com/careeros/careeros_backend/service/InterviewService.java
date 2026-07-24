@@ -5,7 +5,6 @@ import com.careeros.careeros_backend.model.InterviewEvaluation;
 import com.careeros.careeros_backend.model.InterviewSession;
 import com.careeros.careeros_backend.repository.InterviewSessionRepository;
 import com.careeros.careeros_backend.repository.StudentProfileRepository;
-import com.careeros.careeros_backend.model.StudentProfile;
 import lombok.RequiredArgsConstructor;
 import java.util.List;
 import java.time.LocalDateTime;

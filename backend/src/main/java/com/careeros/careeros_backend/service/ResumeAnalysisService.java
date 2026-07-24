@@ -1,5 +1,4 @@
 package com.careeros.careeros_backend.service;
-
 import com.careeros.careeros_backend.dto.ProjectIntelligenceResponse;
 import com.careeros.careeros_backend.dto.ResumeAnalysisResponse;
 import com.careeros.careeros_backend.dto.SkillGapResponse;
@@ -8,16 +7,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.careeros.careeros_backend.model.StudentProfile;
 import com.careeros.careeros_backend.repository.StudentProfileRepository;
-import com.careeros.careeros_backend.model.Project;
 import com.careeros.careeros_backend.model.Resume;
 import com.careeros.careeros_backend.model.ResumeAnalysis;
-import com.careeros.careeros_backend.repository.ProjectRepository;
 import com.careeros.careeros_backend.repository.ResumeAnalysisRepository;
-import com.careeros.careeros_backend.service.ProjectService;
-
-        import java.util.Comparator;
-        import java.util.stream.Collectors;
-        import java.util.List;
+import java.util.List;
 
         @Service
         @RequiredArgsConstructor
@@ -139,8 +132,7 @@ Resume resume =
     SkillGapResponse skillGap =
             skillGapService
                     .getSkillGap(email);
-ProjectIntelligenceResponse projectIntel =
-        projectService
+ProjectIntelligenceResponse projectIntel = projectService
                 .getProjectIntelligence(
                         email
                 );
@@ -644,10 +636,6 @@ resumeAnalysisRepository.save(
 
         .email(email)
 
-        /* ==========================================
-                    SCORES
-           ========================================== */
-
         .resumeScore(
                 result.getResumeScore()
         )
@@ -675,10 +663,6 @@ resumeAnalysisRepository.save(
         .jobReadiness(
                 result.getJobReadiness()
         )
-
-        /* ==========================================
-                EXECUTIVE INTELLIGENCE
-           ========================================== */
 
         .executiveSummary(
                 result.getExecutiveSummary()
@@ -712,10 +696,6 @@ resumeAnalysisRepository.save(
                 result.getIdentityGap()
         )
 
-        /* ==========================================
-                  STAGE EVALUATION
-           ========================================== */
-
         .expectedResumeLevel(
                 result.getExpectedResumeLevel()
         )
@@ -727,11 +707,6 @@ resumeAnalysisRepository.save(
         .stageEvaluation(
                 result.getStageEvaluation()
         )
-
-        /* ==========================================
-                    INSIGHTS
-           ========================================== */
-
         .topStrengths(
                 result.getTopStrengths()
         )
@@ -752,10 +727,6 @@ resumeAnalysisRepository.save(
                 result.getResumeNarrative()
         )
 
-        /* ==========================================
-               RECRUITER PERSPECTIVE
-           ========================================== */
-
         .recruiterFirstImpression(
                 result.getRecruiterFirstImpression()
         )
@@ -767,10 +738,6 @@ resumeAnalysisRepository.save(
         .recruiterConfidence(
                 result.getRecruiterConfidence()
         )
-
-        /* ==========================================
-                RESUME POTENTIAL
-           ========================================== */
 
         .growthPotential(
                 result.getGrowthPotential()
